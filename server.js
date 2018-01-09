@@ -2,7 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const email = require ('./email_vertification.js')
 const database = require('./database') // database..
 const app = express();
 
