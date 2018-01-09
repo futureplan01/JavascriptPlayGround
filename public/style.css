@@ -1,0 +1,13 @@
+.box{
+	width: 32%;
+	height: 35px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	border: 1px solid black;
+}
+form{
+	padding-bottom: 10px;
+}
+.input-box{
+	padding-top: 35px;
+}
