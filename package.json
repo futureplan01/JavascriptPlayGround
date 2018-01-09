@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "1.0.3",
     "body-parser": "^1.17.2",
     "client-sessions": "^0.8.0",
     "crypto-js": "^3.1.9-1",
@@ -17,8 +18,7 @@
     "mysql": "^2.14.1",
     "nodemailer": "^4.1.0",
     "osenv": "0.1.4",
-    "xoauth2": "^1.2.0",
-    "bcrypt": "1.0.3"
+    "xoauth2": "^1.2.0"
   },
   "engine": {
     "node": "8.6.0"
