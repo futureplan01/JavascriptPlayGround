@@ -6,6 +6,7 @@ const email = require ('./email_vertification.js')
 const database = require('./database') // database..
 const app = express();
 
+var port = process.env.PORT || 7555;
 // Gotta run through my code to make it more effecient. 
 
 
@@ -57,6 +58,6 @@ app.post('/login', (req,res) =>{
 })
 
 
-app.listen(7555, () => {
-	console.log('Server running on http://localhost:7555');
+app.listen(port, () => {
+	console.log('Server running on http://localhost:' + port);
 })
