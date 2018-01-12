@@ -1,11 +1,5 @@
 // My practice file
 
-const mysql = require ("mysql");
-const bcrypt = require('bcrypt');
-const config = require("./config");
+let email_vertification = require('./email_vertification');
 
-function test (a,b,c){
-
-}
-
-console.log(test.length) // 3 ... ... ... ... ...
+email_vertification.send('jesaiah.prayor@generationcode.com');

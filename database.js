@@ -1,6 +1,7 @@
 const mysql = require ("mysql");
 const bcrypt = require('bcrypt-nodejs');
 const config = require("./config");
+const email = require("./email_vertification");
 
 var con = mysql.createConnection ({
 		host: "127.0.0.1",

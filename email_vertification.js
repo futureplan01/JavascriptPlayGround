@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
 		accessToken: config.gmail.accessToken
 	}});
 
-let text = "bro you're awesome";
+let text = "You Just Got an email from the coolest person ever";
 // Create a simple JSON object with the necessary values 
 // for sending the email
 
@@ -24,13 +24,24 @@ let mailOptions = {
 	subject: "Checking..",
 	text: text
 }
-
-transporter.sendMail(mailOptions, (err, info) =>{
-	if(err){
-		console.log(err);
-	}else{
-		console.log("Message sent " + info.response);
+module.exports = {
+ send(userEmail){
+	let mailOptions = {
+	from: "JesaiahPrayor@gmail.com",
+	to: userEmail,
+	subject: "Guess What...",
+	text: text
 	}
-})
+
+	transporter.sendMail(mailOptions, (err, info) =>{
+		if(err){
+			console.log(err);
+		}else{
+			console.log("Message sent " + info.response);
+		}
+	})
+}
+
+}
 
 

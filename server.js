@@ -2,7 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const database = require('./database') // database..
+const database = require('./database');// database..
+const email = require('./email_vertification');
 const app = express();
 
 var port = process.env.PORT || 7555;
@@ -16,11 +17,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-/*
-	1) Handle errors
-*/
 
+// Have to use online database
 app.post('/createUser',(req,res)=>{
+	/*
 	// Call back required..
 	if(req.body.name.length >= 20){
 		console.log("Name is way too big, please try again...");
@@ -40,20 +40,24 @@ app.post('/createUser',(req,res)=>{
 	   		 res.redirect("/signup.html");
 		})
 	   }
-	}
+	}*/
 });
 
 
 app.post('/login', (req,res) =>{
+	email.send(req.body.email, ()=>{
+		console.log('email sent');
+	});
 
-	database.checkUser(req.body.email,req.body.password)
+
+	/*database.checkUser(req.body.email,req.body.password)
 	.then(result => {
 		res.redirect("/welcome.html")
 	},error => {
 		console.log(error.code); 
 		console.log("Wrong Username/password combination");
 		res.sendStatus(401);
-	})
+	})*/
 })
 
 
