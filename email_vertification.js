@@ -11,7 +11,8 @@ let transporter = nodemailer.createTransport({
 		clientId: config.gmail.clientID,
 		clientSecret: config.gmail.clientSecret,
 		refreshToken: config.gmail.resfreshToken,
-		accessToken: config.gmail.accessToken
+		accessToken: config.gmail.accessToken,
+		expires: 
 	}});
 
 let text = "You Just Got an email from the coolest person ever";
@@ -25,7 +26,7 @@ let mailOptions = {
 	text: text
 }
 module.exports = {
- send(userEmail){
+ send(userEmail, callback){
 	let mailOptions = {
 	from: "JesaiahPrayor@gmail.com",
 	to: userEmail,
@@ -40,6 +41,7 @@ module.exports = {
 			console.log("Message sent " + info.response);
 		}
 	})
+	callback (null, 'email sent to ' + userEmail);
 }
 
 }

@@ -43,10 +43,11 @@ app.post('/createUser',(req,res)=>{
 	}*/
 });
 
-
+// add a callback......
 app.post('/login', (req,res) =>{
-	email.send(req.body.email, ()=>{
-		console.log('email sent');
+	email.send(req.body.email, (err, val)=>{
+		console.log(val);
+		res.redirect('/welcome.html');
 	});
 
 
