@@ -11,8 +11,7 @@ let transporter = nodemailer.createTransport({
 		clientId: config.gmail.clientID,
 		clientSecret: config.gmail.clientSecret,
 		refreshToken: config.gmail.resfreshToken,
-		accessToken: config.gmail.accessToken,
-		expires: 
+		accessToken: config.gmail.accessToken
 	}});
 
 let text = "You Just Got an email from the coolest person ever";
