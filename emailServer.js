@@ -9,12 +9,15 @@ app.use(express.static('public'));
 // Confused
 
 //app.use(bodyParser.urlencoded({
-//	extended: false;
+//	extended: false
 //}));
+
+// uses static files
+app.use(express.static('views'));
 
 
 app.get('/', (req,res) =>{
-	res.sendFile('email.html');
+	res.redirect('/email.html');
 })
 
 app.listen(port, () =>{
