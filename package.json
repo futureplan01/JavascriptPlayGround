@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/futureplan01/JavascriptPlayGround/issues"
   },
+  "engines": {
+    "node": "9.2.1"
+  },
   "homepage": "https://github.com/futureplan01/JavascriptPlayGround#readme",
   "dependencies": {
     "body-parser": "1.18.3",

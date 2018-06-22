@@ -24,7 +24,7 @@ app.get('/email', (req,res) =>{
 })
 
 app.post('/email',(req,res) =>{
-	let eMail = req.body.eMail;
+	let eMailying = req.body.eMail;
 	email.sendMail(eMail,(err,result)=>{
 		if(err){
 			console.log("Main: " + err);
