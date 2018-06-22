@@ -19,6 +19,10 @@ app.use(express.static('views'));
 
 //})
 
+app.get('/', (req,res) =>{
+	res.redirect('/email');
+})
+
 app.get('/email', (req,res) =>{
 	res.sendFile(__dirname+'/views/email.html')
 })
