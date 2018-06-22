@@ -2,4 +2,4 @@
 .env
 npm-debug.log
 .DS_Store
-/*.env
+/*.envnode_modules
