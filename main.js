@@ -14,13 +14,9 @@ app.use(bodyParser.urlencoded({
 // uses static files
 app.use(express.static('views'));
 
-// send this to /email ... somehow ...
-//app.get('/', (req,res) =>{
-
-//})
 
 app.get('/', (req,res) =>{
-	res.redirect('/email');
+	res.redirect('/email'); 
 })
 
 app.get('/email', (req,res) =>{
@@ -28,7 +24,7 @@ app.get('/email', (req,res) =>{
 })
 
 app.post('/email',(req,res) =>{
-	let eMailying = req.body.eMail;
+	let eMail = req.body.eMail;
 	email.sendMail(eMail,(err,result)=>{
 		if(err){
 			console.log("Main: " + err);
