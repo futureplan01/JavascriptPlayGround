@@ -2,31 +2,33 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 
-const transporter = nodemailer.createTransport({
-	service: 'gmail',
+// 3-Legged OAuth2 
+let transporter = nodemailer.createTransport({
+	host: 'smtp.gmail.com',
+	port: 465,
+	secure: true,
 	auth: {
-		user: process.env.email,
-		pass:process.env.pass,
+		type: 'OAuth2',
+		clientId: process.env.clientId,
+		clientSecret: process.env.clientSecret
 	}
 });
 
 module.exports = {
 	
 	sendMail: function (email, callback){
-		const mailOptions = {
+		transporter.sendMail({
 			from: 'prayorjesaiah@gmail.com',
 			to: email,
-			subject: 'test',
-			text:'easy going'
-		};
-		transporter.sendMail(mailOptions,function(error,info){
-			if(error){
-				callback(error);
-			}
-			else{
-				callback(null,info);
+			subject: 'testing',
+			text: 'You Rock',
+			auth: {
+				user: 'prayorjesaiah@gmail.com',
+				refreshToken: process.env.refreshToken,
+				accessToken: process.env.accessToken
 			}
 		});
+
 	}
 }
 
