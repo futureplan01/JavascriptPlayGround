@@ -2,14 +2,22 @@
 <html>
 <head>
 	<title>Log In</title>
+	<link rel="stylesheet" type="text/css" href="logIn.css">
 </head>
 <body>
 	<div id = 'root'>
-		<form>
-			<input type="text" id = 'email' name="email" placeholder = 'xxx@email.com'>
-			<input type="password" id = 'pass' name="pass" placeholder = 'I love kittens'>
+		<center><form>
+			<h1> Log In To Your Oasis</h1>
+			<h3> Email Address</h3>
+			<input type="text" class = 'text' id = 'email' name="email" placeholder = 'xxx@email.com'>
+			<h3> Password</h3>
+			<input type="password" class = 'text' id = 'pass' name="pass" placeholder = 'I love kittens'>
+			<br>
 			<input type="submit" name="Submit">
-		</form>
+			<a href="">Sign Up</a> <a href="">Forgot PassWord</a>
+		</form></center>
 	</div>
+
+	<script type="routes/logIn.js"></script>
 </body>
 </html>

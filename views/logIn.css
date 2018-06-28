@@ -1,0 +1,15 @@
+#root{
+	margin-top: 15%;
+}
+
+.text{
+	height: 18px;
+	min-width: 30%;
+	font-size: 16px;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 5%;
+	border-style: solid;
+	border-width: 3px;
+	border-color: powderblue;
+}
