@@ -19,7 +19,7 @@ app.get('/', (req,res) =>{
 	res.redirect('/email'); 
 })
 
-app.get('signUp', (req,res) =>{
+app.get('/logIn', (req,res) =>{
 	res.sendFile(__dirname + '/views/logIn.html')
 })
 app.get('/email', (req,res) =>{
