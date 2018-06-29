@@ -26,6 +26,10 @@ app.get('/email', (req,res) =>{
 	res.sendFile(__dirname+'/views/email.html');
 })
 
+app.post('logIn', (req,res) =>{
+	res.redirect('/welcome');
+})
+
 app.get('/welcome', (req,res) =>{
 	res.sendFile(__dirname+'/views/welcome.html');
 })
