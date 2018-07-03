@@ -26,6 +26,10 @@
     "nodemailer": "4.6.6",
     "nodemon": "1.17.5",
     "raw-body": "2.3.3",
+<<<<<<< HEAD
     "textbelt": "0.0.4"
+=======
+    "twilio": "3.17.4"
+>>>>>>> frontend
   }
 }
