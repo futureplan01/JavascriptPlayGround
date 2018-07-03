@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Starting With View</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id = "root">
+		<h1>Welcome Earthing</h1>
+
+		<div id = "logIn"> 
+			<a href="/logIn"> Check Out Our Log In Page</a>
+		</div>
+	</div>
+
+	<!--Lets Put Links To Our Githubs And Link to Our Sign up page-->
+
+	<div id = "app">
+		<center> {{message}} </center>
+	</div>
+</body>
+
+
+<script>
+	let app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue!'
+		}
+	})
+</script>
+
+</html>
