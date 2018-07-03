@@ -1,29 +1,26 @@
 const express = require('express'); 
 const bodyParser = require('body-parser');
-const email = require('./routes/sendEmail.js');
+const email = require('./public/routes/sendEmail.js');
 const app = express();
 
 let port = process.env.PORT || 7555;
 
-app.use(express.static('public'));
-    
+app.use(express.static(__dirname +'/public'));
+
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
-// uses static files
-app.use(express.static('views'));
-
-
 app.get('/', (req,res) =>{
-	res.redirect('/email'); 
+	res.sendFile(__dirname + '/public/web/index.html');
 })
 
 app.get('/logIn', (req,res) =>{
-	res.sendFile(__dirname + '/views/logIn.html')
+	res.sendFile(__dirname + '/public/web/logIn.html');
+
 })
 app.get('/email', (req,res) =>{
-	res.sendFile(__dirname+'/views/email.html');
+	res.sendFile(__dirname+'/public/web/email.html');
 })
 
 app.post('logIn', (req,res) =>{
@@ -31,11 +28,12 @@ app.post('logIn', (req,res) =>{
 })
 
 app.get('/welcome', (req,res) =>{
-	res.sendFile(__dirname+'/views/welcome.html');
+	res.sendFile(__dirname+'/public/web/welcome.html');
 })
 
 // Store Info In JSon File...
 app.post('/email',(req,res) =>{
+	// retrieves information from email.html
 	let eMail = req.body.email;
 	email.sendMail(eMail,(err,result)=>{
 		if(err){
