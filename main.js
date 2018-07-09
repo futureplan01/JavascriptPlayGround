@@ -6,6 +6,7 @@ const app = express();
 let port = process.env.PORT || 7555;
 
 app.use(express.static(__dirname +'/public'));
+app.use(express.static(__dirname + '/client/public'));
 
 app.use(bodyParser.urlencoded({
 	extended: false
@@ -13,6 +14,10 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', (req,res) =>{
 	res.sendFile(__dirname + '/public/web/index.html');
+})
+
+app.get('/react', (request,resolution)=>{
+	resolution.sendFile(__dirname+'/client/public/index.html');
 })
 
 app.get('/logIn', (req,res) =>{
@@ -23,8 +28,11 @@ app.get('/email', (req,res) =>{
 	res.sendFile(__dirname+'/public/web/email.html');
 })
 
-app.post('logIn', (req,res) =>{
+app.post('/logIn', (req,res) =>{
 	res.redirect('/welcome');
+})
+app.get('/test', (req,res) =>{
+	res.sendFile(__dirname + '/public/web/test.html')
 })
 
 app.get('/welcome', (req,res) =>{
