@@ -6,7 +6,8 @@ const users = require('./routes/api/users');
 const app = express();
 
 let port = process.env.PORT || 7555;
-
+//Body Paerser MiddleWare
+app.use(bodyParser.json());
 //MONGOOSE
 const db = require('./keys').mongodb.dbURI;
 mongoose
@@ -14,6 +15,10 @@ mongoose
     .then(() => console.log('MongoDb Connected....'))
     .catch(err => console.log(err));
 app.use('/api/users', users);
+
+
+
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/client/public'));
