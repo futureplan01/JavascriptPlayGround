@@ -5,8 +5,8 @@
 
 After cloning to local
 
-1) npm install 
-2) npm start
+1) Type 'npm run react' to start react server
+2) then on another terminal tab Type 'npm run server' to start node
 
 Tis that simple.
 
