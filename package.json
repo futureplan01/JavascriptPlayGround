@@ -7,8 +7,8 @@
     "start": "node main.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon main.js"
+    "react": "webpack -d --watch",
+    "server": "nodemon main.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@babel/core": "7.0.0-beta.53",
     "@babel/preset-env": "7.0.0-beta.53",
     "@babel/preset-react": "7.0.0-beta.53",
+    "babel-core": "7.0.0-bridge.0",
     "babel-loader": "7.1.5",
     "body-parser": "1.18.3",
     "dotenv": "6.0.0",
