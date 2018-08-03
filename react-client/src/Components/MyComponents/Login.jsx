@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import styles from './Login.css';
 
 class Login extends Component {
   render(){
-      return <form>
+      return (
+      <center>
+      <form>
           <label>
             <h1> Email:</h1>
             <input type="text" name="name" placeholder = 'JavascriptRocks@gmail.com'/>
@@ -14,9 +17,10 @@ class Login extends Component {
           </label>
             <br/>
           <input type="submit" value="Submit" />
-        </form>;
+      </form>;
+      </center>);
       
   }
 }
 
-export default Login;
+export default Login
