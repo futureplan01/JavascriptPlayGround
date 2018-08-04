@@ -9,13 +9,12 @@ import Login from "./MyComponents/Login";
 
 class App extends Component{
 	render(){
-		return(
-			<Router>
-				<div>
-					<Login/>
-				</div>
-			</Router>
-		);
+		return <Router>
+        <div>
+				<HomePage name={"JJ"} age={25}/>
+          	<Login/>
+        </div>
+      </Router>;
 	}
 }
 
