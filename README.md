@@ -1,7 +1,6 @@
-## JavascriptPlayGround
 ## Exploring the world of Javascript through projects
 
-# First Project is making a log in screen using Vue.js, MongoDb, Node.js
+# Login Screen Using React and Node Js. Trying Server side rendering. 
 
 After cloning to local
 
@@ -9,6 +8,3 @@ After cloning to local
 2) npm start
 
 Tis that simple.
-
-
-eliseeAugustin, Venoth Krishnan
