@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "javascriptplayground",
   "version": "1.0.0",
   "description": "",
@@ -46,4 +47,38 @@
   "devDependencies": {
     "webpack-cli": "3.0.8"
   }
+=======
+    "name": "javascriptplayground",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "server": "nodemon main.js",
+        "heroku-postbuild": "cd client && npm install && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/futureplan01/JavascriptPlayGround.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/futureplan01/JavascriptPlayGround/issues"
+    },
+    "engines": {
+        "node": "9.2.1"
+    },
+    "homepage": "https://github.com/futureplan01/JavascriptPlayGround#readme",
+    "dependencies": {
+        "body-parser": "1.18.3",
+        "create-react-app": "1.5.2",
+        "dotenv": "6.0.0",
+        "express": "4.16.3",
+        "mongoose": "^5.2.2",
+        "nodemailer": "4.6.6",
+        "nodemon": "1.17.5",
+        "raw-body": "2.3.3"
+    }
+>>>>>>> 096fe2a012ea56f08dd66f54dfe4c7a788bb0afb
 }
