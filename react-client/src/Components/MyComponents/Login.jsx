@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetch from "isomorphic-fetch";
 import styles from './Login.css';
 
 class Login extends Component {
@@ -8,10 +9,32 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // I want the UserName and email values
+  
   handleSubmit(events) {
-    alert("Yo: " + events.target.name.value + " with email " + events.target.email.value);
+    events.preventDefault();
+    const value = { 
+      user: events.target.name.value, 
+      email: events.target.email.value 
+    };
 
+    alert(
+      "Yo, Son: " +
+      events.target.name.value +
+      " with email " +
+      events.target.email.value
+    );
+    return fetch("http://localhost:7555/", {
+      method: "POST",
+      body: JSON.stringify(value),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
+        console.log("sucess");
+        return res;
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

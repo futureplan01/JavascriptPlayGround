@@ -30,6 +30,11 @@ app.get('/', (request, response) => {
     console.log(request.body.name);
 })
 
+app.post("/", (request, response)=>{
+    let user = request.body.user;
+    let email = request.body.email;
+});
+
 app.listen(port, () =>{
 	console.log('Server running on http://localhost:' + port);
 })
