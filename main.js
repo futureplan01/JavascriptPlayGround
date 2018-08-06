@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const users = require('./routes/api/users');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const users = require("./routes/api/users");
 const app = express();
 
 let port = process.env.PORT || 7555;
@@ -14,28 +14,22 @@ app.use(
 );
 
 //Connects to DB
-const db = require('./keys').mongodb.dbURI;
+const db = require("./keys").mongodb.dbURI;
 mongoose
-    .connect(db)
-    .then(() => console.log('MongoDb Connected....'))
-    .catch(err => console.log(err));
+  .connect(db)
+  .then(() => console.log("MongoDb Connected...."))
+  .catch(err => console.log(err));
 
 // Showing data from get mongoose
-app.use('/api/users', users);
+app.use("/api/users", users);
 
-app.use(express.static(__dirname +'/react-client/public'));
+app.use(express.static(__dirname + "/react-client/public"));
 
-app.get('/', (request, response) => {
-    response.sendFile(__dirname + '/react-client/public/index.html' );
-    console.log(request.body.name);
-})
-
-app.post("/", (request, response)=>{
-    let user = request.body.user;
-    let email = request.body.email;
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/react-client/public/index.html");
+  console.log(request.body.name);
 });
 
-app.listen(port, () =>{
-	console.log('Server running on http://localhost:' + port);
-})
-
+app.listen(port, () => {
+  console.log("Server running on http://localhost: " + port);
+});

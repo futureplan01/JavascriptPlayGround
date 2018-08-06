@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import fetch from "isomorphic-fetch";
-import styles from './Login.css';
+import styles from "./Login.css";
 
 class Login extends Component {
   constructor() {
@@ -9,21 +9,20 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  
   handleSubmit(events) {
     events.preventDefault();
-    const value = { 
-      user: events.target.name.value, 
-      email: events.target.email.value 
+    const value = {
+      user: events.target.name.value,
+      email: events.target.email.value
     };
 
     alert(
-      "Yo, Son: " +
-      events.target.name.value +
-      " with email " +
-      events.target.email.value
+      "Username11: " +
+        events.target.name.value +
+        " Email:  " +
+        events.target.email.value
     );
-    return fetch("http://localhost:7555/", {
+    return fetch("http://localhost:7555/api/users", {
       method: "POST",
       body: JSON.stringify(value),
       headers: {
@@ -60,4 +59,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Login;
