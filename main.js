@@ -7,21 +7,27 @@ const app = express();
 let port = process.env.PORT || 7555;
 //Body Paerser MiddleWare
 app.use(bodyParser.json());
-//MONGOOSE
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+
+//Connects to DB
 const db = require('./keys').mongodb.dbURI;
 mongoose
     .connect(db)
     .then(() => console.log('MongoDb Connected....'))
     .catch(err => console.log(err));
+
+// Showing data from get mongoose
 app.use('/api/users', users);
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
 
 app.use(express.static(__dirname +'/react-client/public'));
 
 app.get('/', (request, response) => {
-	response.sendFile(__dirname + '/react-client/public/index.html' )
+    response.sendFile(__dirname + '/react-client/public/index.html' );
+    console.log(request.body.name);
 })
 
 app.listen(port, () =>{
