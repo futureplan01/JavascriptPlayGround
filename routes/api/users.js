@@ -42,13 +42,4 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-router.post("/", (req, res) => {
-  const newUser = new User({
-    userName: "Trying now",
-    email: "hellow now"
-  }); //created in memory
-
-  newUser.save().then(user => res.json(user)); // save the user
-});
-
 module.exports = router;
