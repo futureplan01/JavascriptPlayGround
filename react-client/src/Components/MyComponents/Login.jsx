@@ -45,7 +45,7 @@ class Login extends Component {
             <input type="text" name="email" placeholder="Email" />
           </label>
           <br />
-          <input type="submit" value="Submit" onChange={this.handleSubmit} />
+          <button>Submit</button>
         </form>
       </center>;
   }
