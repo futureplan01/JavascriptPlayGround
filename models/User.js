@@ -10,7 +10,16 @@ const UserSchema = new Schema({
     },
     email: {
         type: String
-    }
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: Date.now
+    },
+
 });
 
 // created a model that takes in 'user'
