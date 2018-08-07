@@ -1,5 +1,20 @@
 input{   
-    min-height: 30%;  
-    min-width: 20%;
-    font-size: 16px;
+    min-height: 67%;  
+    min-width: 40%;
+    font-size: 20px;
+    text-align: center;
+}
+body {
+    background-image: url("http://getwallpapers.com/wallpaper/full/e/1/2/41252.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: rgba(58, 75, 89, .7);
+}
+h1{
+    color: rgba(168, 5, 122, 1);
+    font-size: 3em;
+}
+
+#form{
+    margin-top: 35%;
 }

@@ -5,11 +5,11 @@ import React, {Component} from 'react';
 
 class HomePage extends Component {
   render() {
-    return (
-      <div>
-			<center><h1>You're The Coolest {this.props.name}</h1></center>
-      </div>
-    );
+    return <div>
+        <center>
+          <h1>It's Purrrrrrrrrrfect</h1>
+        </center>
+      </div>;
   }
 }
 

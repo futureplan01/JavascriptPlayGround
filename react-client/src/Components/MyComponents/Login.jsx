@@ -37,25 +37,17 @@ class Login extends Component {
   }
 
   render() {
-    return (
-      <center>
-        <form onSubmit={this.handleSubmit}>
+    return <center>
+        <form id="form" onSubmit={this.handleSubmit}>
           <label>
-            <h1> User Name </h1>
-            <input type="text" name="name" placeholder="Javascript Abuser" />
-
-            <h1> Email </h1>
-            <input
-              type="text"
-              name="email"
-              placeholder="JavascriptRocks@gmail.com"
-            />
+            <input type="text" name="name" placeholder="UserName" />
+            <br/>
+            <input type="text" name="email" placeholder="Email" />
           </label>
           <br />
           <input type="submit" value="Submit" onChange={this.handleSubmit} />
         </form>
-      </center>
-    );
+      </center>;
   }
 }
 
