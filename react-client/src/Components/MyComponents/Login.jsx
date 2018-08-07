@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-fetch";
+import Popup from "reactjs-popup";
 import styles from "./Login.css";
 
 class Login extends Component {
@@ -16,12 +17,7 @@ class Login extends Component {
       email: events.target.email.value
     };
 
-    alert(
-      "Username11: " +
-        events.target.name.value +
-        " Email:  " +
-        events.target.email.value
-    );
+
     return fetch("http://localhost:7555/api/users", {
       method: "POST",
       body: JSON.stringify(value),
@@ -30,7 +26,7 @@ class Login extends Component {
       }
     })
       .then(res => {
-        console.log("sucess");
+        console.log("success");
         return res;
       })
       .catch(err => console.log(err));
@@ -38,7 +34,7 @@ class Login extends Component {
 
   render() {
     return <center>
-        <form id="form" onSubmit={this.handleSubmit}>
+      <form className ="form" onSubmit={this.handleSubmit}>
           <label>
             <input type="text" name="name" placeholder="UserName" />
             <br/>
@@ -46,7 +42,9 @@ class Login extends Component {
           </label>
           <br />
           <button>Submit</button>
+        <imput type="submit">Submit</imput>
         </form>
+       
       </center>;
   }
 }

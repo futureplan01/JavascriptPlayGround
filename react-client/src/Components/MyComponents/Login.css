@@ -11,11 +11,20 @@ body {
     background-repeat: no-repeat;
     background-color: rgba(58, 75, 89, .7);
 }
-h1{
-    color: rgba(168, 5, 122, 1);
-    font-size: 3em;
+h1,h2,h3,h4,a{
+    color: rgba(40, 178, 220, 1);
 }
 
-#form{
-    margin-top: 35%;
+h1{
+        font-size: 4em;
+}
+
+#header{
+    margin-top: 10%;
+}
+#SignUp{
+    background-color: black;
+}
+.form{
+    margin-top: 12%;
 }
