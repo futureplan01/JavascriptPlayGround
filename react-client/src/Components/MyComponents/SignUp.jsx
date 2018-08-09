@@ -15,18 +15,18 @@ class SignUp extends React.Component {
             email: events.target.email.value,
             password: events.target.password.value
         };
-        return fetch("http://localhost:7555/api/users", {
-            method: "POST",
-            body: JSON.stringify(value),
-            headers: {
-                "Content-Type": "application/json"
-            }
+        return fetch(window.location.href + "api/users/register", {
+          method: "POST",
+          body: JSON.stringify(value),
+          headers: {
+            "Content-Type": "application/json"
+          }
         })
-            .then(res => {
-                console.log("success");
-                return res;
-            })
-            .catch(err => console.log(err));
+          .then(res => {
+            console.log("success");
+            return res;
+          })
+          .catch(err => console.log(err));
 
     }
 

@@ -7,20 +7,20 @@ import SignUp from "./SignUp";
 class Login extends Component {
   constructor() {
     super();
-    this.state = { userName: "", email: "", redirect: false};
+    this.state = { userName: "", email: "", redirect: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   handleSubmit(events) {
     events.preventDefault();
-    
-    const value = { 
-      userName: events.target.name.value, 
-      email: events.target.email.value 
+
+    const value = {
+      userName: events.target.name.value,
+      email: events.target.email.value
     };
-    
-    return fetch(window.location.href + "api/users", {
+
+    return fetch(window.location.href + "api/users/login", {
       method: "POST",
       body: JSON.stringify(value),
       headers: {
@@ -37,24 +37,23 @@ class Login extends Component {
     events.preventDefault();
     this.setState({ redirect: true });
   }
-  
   render() {
     if (this.state.redirect) {
       return <Redirect push to="/SignUp" />;
     }
     return <center>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <label>
-            <input type="text" name="name" placeholder="UserName" />
-            <br />
-            <input type="text" name="email" placeholder="Email" />
-          </label>
+      <form className="form" onSubmit={this.handleSubmit}>
+        <label>
+          <input type="text" name="name" placeholder="UserName" />
           <br />
-          <input type="submit"/>
-        </form>
+          <input type="text" name="email" placeholder="Email" />
+        </label>
+        <br />
+        <input type="submit" />
+      </form>
 
       <button onClick={this.handleSignUp} >SignUp</button>
-      </center>;
+    </center>;
   }
 }
 

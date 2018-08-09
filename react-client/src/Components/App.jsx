@@ -1,21 +1,29 @@
-// Will be used to store the routes for the various (React) routes
-
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import {browserHistory} from 'react-router';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { Link, Switch, Route } from "react-router-dom";
 import HomePage from "./MyComponents/HomePage";
 import NavBar from "./HeaderComponent/NavBar";
 import Login from "./MyComponents/Login";
+import SignUp from "./MyComponents/SignUp";
 
-class App extends Component{
-	render(){
-		return <Router>
+class App extends React.Component {
+  render() {
+    return (
+		<Router>
+      <div>
         <div>
-				<HomePage name={"JJ"} age={25}/>
-          	<Login/>
+		<HomePage/>
+          <Link to="/">Login</Link>
+          <Link to="/SignUp">SignUp</Link>
         </div>
-      </Router>;
-	}
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/SignUp" exact component={SignUp} />
+        </Switch>
+      </div>
+	  </Router>
+    );
+  }
 }
 
 export default App;
