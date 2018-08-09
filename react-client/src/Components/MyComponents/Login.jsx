@@ -1,24 +1,26 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import fetch from "isomorphic-fetch";
-import Popup from "reactjs-popup";
 import styles from "./Login.css";
+import SignUp from "./SignUp";
 
 class Login extends Component {
   constructor() {
     super();
-    this.state = { userName: "", email: "" };
+    this.state = { userName: "", email: "", redirect: false};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   handleSubmit(events) {
     events.preventDefault();
-    const value = {
-      user: events.target.name.value,
-      email: events.target.email.value
+    
+    const value = { 
+      userName: events.target.name.value, 
+      email: events.target.email.value 
     };
-
-
-    return fetch("http://localhost:7555/api/users", {
+    
+    return fetch(window.location.href + "api/users", {
       method: "POST",
       body: JSON.stringify(value),
       headers: {
@@ -31,20 +33,27 @@ class Login extends Component {
       })
       .catch(err => console.log(err));
   }
-
+  handleSignUp(events) {
+    events.preventDefault();
+    this.setState({ redirect: true });
+  }
+  
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/SignUp" />;
+    }
     return <center>
-      <form className ="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <label>
             <input type="text" name="name" placeholder="UserName" />
-            <br/>
+            <br />
             <input type="text" name="email" placeholder="Email" />
           </label>
           <br />
-          <button>Submit</button>
-        <imput type="submit">Submit</imput>
+          <input type="submit"/>
         </form>
-       
+
+      <button onClick={this.handleSignUp} >SignUp</button>
       </center>;
   }
 }
