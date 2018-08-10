@@ -8,21 +8,16 @@ import SignUp from "./MyComponents/SignUp";
 
 class App extends React.Component {
   render() {
-    return (
-		<Router>
-      <div>
+    return <Router>
         <div>
-		<HomePage/>
-          <Link to="/">Login</Link>
-          <Link to="/SignUp">SignUp</Link>
+          <div />
+          <Switch>
+            <Route path="/" exact component={Login} />
+            <Route path="/SignUp" exact component={SignUp} />
+            <Route path="/Home" exact component={HomePage} />
+          </Switch>
         </div>
-        <Switch>
-          <Route path="/" exact component={Login} />
-          <Route path="/SignUp" exact component={SignUp} />
-        </Switch>
-      </div>
-	  </Router>
-    );
+      </Router>;
   }
 }
 
