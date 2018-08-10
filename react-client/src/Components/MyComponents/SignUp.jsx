@@ -10,12 +10,11 @@ class SignUp extends React.Component {
     // 
     handleSubmit(events){
         events.preventDefault();
-        const value = {
-            user: events.target.name.value,
-            email: events.target.email.value,
-            password: events.target.password.value
-        };
-        return fetch(window.location.href + "api/users/register", {
+        const value = { userName: events.target.name.value, email: events.target.email.value, password: events.target.password.value };
+        let url = window.location.href;
+        let res = url.split("/SignUp");
+        console.log(res);
+        return fetch(res[0] + "/api/users/register", {
           method: "POST",
           body: JSON.stringify(value),
           headers: {
@@ -23,7 +22,6 @@ class SignUp extends React.Component {
           }
         })
           .then(res => {
-            console.log("success");
             return res;
           })
           .catch(err => console.log(err));
@@ -48,3 +46,5 @@ class SignUp extends React.Component {
           </div>;
     }
 }
+
+export default SignUp;

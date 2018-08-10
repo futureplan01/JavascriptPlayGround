@@ -16,9 +16,8 @@ class Login extends Component {
     events.preventDefault();
 
     const value = {
-      userName: events.target.name.value,
-      email: events.target.email.value
-    };
+      email: events.target.email.value, 
+      password: events.target.password.value };
 
     return fetch(window.location.href + "api/users/login", {
       method: "POST",
@@ -42,18 +41,18 @@ class Login extends Component {
       return <Redirect push to="/SignUp" />;
     }
     return <center>
-      <form className="form" onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" name="name" placeholder="UserName" />
-          <br />
+        <form className="form" onSubmit={this.handleSubmit}>
+          <label>
           <input type="text" name="email" placeholder="Email" />
-        </label>
-        <br />
-        <input type="submit" />
-      </form>
+            <br />
+            <input type="password" name="password" placeholder="Password" />
+          </label>
+          <br />
+          <input type="submit" />
+        </form>
 
-      <button onClick={this.handleSignUp} >SignUp</button>
-    </center>;
+        <button onClick={this.handleSignUp}>SignUp</button>
+      </center>;
   }
 }
 
