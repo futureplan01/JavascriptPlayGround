@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-fetch";
+import { Redirect } from "react-router";
 import styles from "./Login.css";
 
-class SignUp extends React.Component {
+class SignUp extends Component {
   constructor() {
     super();
-    this.state = { user: "", email: "", password: "" };
+    this.state = { user: "", email: "", password: "", loginRedirect: false };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
     // 
     handleSubmit(events){
@@ -20,8 +22,9 @@ class SignUp extends React.Component {
           headers: {
             "Content-Type": "application/json"
           }
-        })
-          .then(res => {
+        }).then(res => {
+            console.log("hellppp");
+            this.setState({ loginRedirect: true });
             return res;
           })
           .catch(err => console.log(err));
@@ -29,6 +32,9 @@ class SignUp extends React.Component {
     }
 
     render(){
+        if (this.state.loginRedirect) {
+          return <Redirect push to="/" />;
+        }
         return <div id="SignUp">
             <center>
               <form className="form" onSubmit={this.handleSubmit}>
