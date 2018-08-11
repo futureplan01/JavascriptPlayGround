@@ -46,13 +46,14 @@ router.post('/login', (req, res) => {
       email
     })
     .then(user => {
+      return new Promise(function (resolve, reject){
       //check for user
       console.log("Loggin In: " + user);
 
       if (!user) {
-        return res.status(404).json({
+        return reject( res.status(404).json({
           email: "User email not found!"
-        });
+        }));
       }
 
       //Check Password
@@ -64,15 +65,16 @@ router.post('/login', (req, res) => {
               msg: 'Success'
             });
           } else {
-            return res.status(400).json({
+            return reject (res.status(400).json({
               password: "Password incorrect!"
-            });
+            }));
           }
         });
 
 
-    })
-});
+    });
+    });
+  });
 
 
 // @router  GET api/users/register

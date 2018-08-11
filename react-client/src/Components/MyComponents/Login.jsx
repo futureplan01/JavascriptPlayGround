@@ -39,9 +39,9 @@ class Login extends Component {
           console.log(res);
           this.setState({ login: true });
           return res;
-        },function(){
-          console.log("err");
-        });
+        }).catch(
+          console.log("error")
+        );
       
   }
   handleSignUp(events) {
