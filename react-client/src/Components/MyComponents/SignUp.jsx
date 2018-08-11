@@ -6,7 +6,13 @@ import styles from "./Login.css";
 class SignUp extends Component {
   constructor() {
     super();
-    this.state = { user: "", email: "", password: "", loginRedirect: false };
+      this.state = { 
+        user: "", 
+        email: "",
+        password: "", 
+        loginRedirect: false, 
+        problemOccured: false 
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
     // 
