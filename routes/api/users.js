@@ -46,12 +46,9 @@ router.post('/login', (req, res) => {
       email
     })
     .then(user => {
-      return new Promise(function (resolve, reject){
-      //check for user
-      console.log("Loggin In: " + user);
 
       if (!user) {
-        return reject( res.status(404).json({
+        return ( res.status(404).json({
           email: "User email not found!"
         }));
       }
@@ -65,14 +62,14 @@ router.post('/login', (req, res) => {
               msg: 'Success'
             });
           } else {
-            return reject (res.status(400).json({
+            return (res.status(400).json({
               password: "Password incorrect!"
             }));
           }
         });
 
 
-    });
+    
     });
   });
 

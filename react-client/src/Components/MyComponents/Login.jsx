@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import fetch from "isomorphic-fetch";
+import axios from "axios";
 import styles from "./Login.css";
 import SignUp from "./SignUp";
 import Problem from "./ProblemOccured";
@@ -22,26 +23,17 @@ class Login extends Component {
   handleSubmit(events) {
     events.preventDefault();
 
-    const value = {
-      email: events.target.email.value, 
-      password: events.target.password.value };
-
-    return fetch(window.location.href + "api/users/login", {
-      method: "POST",
-      body: JSON.stringify(value),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }) // Successful
-      .then(
-        res => {
-          console.log("success");
-          console.log(res);
-          this.setState({ login: true });
-          return res;
-        }).catch(
-          console.log("error")
-        );
+    axios.post(window.location.href + "api/users/login",{
+      email: events.target.email.value,
+      password: events.target.password.value
+    })
+      .then(res =>{
+        this.setState({ login: true });
+      })
+      .catch(err=>{
+        this.setState({ problem: true });
+        console.log(err);
+      })
       
   }
   handleSignUp(events) {
