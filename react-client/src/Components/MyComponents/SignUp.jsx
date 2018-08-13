@@ -38,6 +38,7 @@ class SignUp extends Component {
     }
 
     render(){
+      console.log("Sup Gurl");
         if (this.state.loginRedirect) {
           return <Redirect push to="/" />;
         }

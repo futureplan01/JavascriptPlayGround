@@ -1,40 +1,44 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Link, Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router";
 import fetch from "isomorphic-fetch";
 import axios from "axios";
 import styles from "./Login.css";
 import SignUp from "./SignUp";
+import Home from "./HomePage";
 import Problem from "./ProblemOccured";
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-       userName: "", 
-       email: "", 
-       signUp: false, 
-       login: false,
+      userName: "",
+      email: "",
+      signUp: false,
+      login: false,
       problem: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
+  
 
   handleSubmit(events) {
     events.preventDefault();
 
-    axios.post(window.location.href + "api/users/login",{
-      email: events.target.email.value,
-      password: events.target.password.value
-    })
-      .then(res =>{
-        this.setState({ login: true });
+    axios
+      .post(window.location.href + "api/users/login", {
+        email: events.target.email.value,
+        password: events.target.password.value
       })
-      .catch(err=>{
+      .then(res => {
+        this.setState({ login: true});
+      })
+      .catch(err => {
         this.setState({ problem: true });
         console.log(err);
-      })
-      
+      });
   }
   handleSignUp(events) {
     events.preventDefault();
@@ -43,17 +47,19 @@ class Login extends Component {
   render() {
     let error;
     if (this.state.signUp) {
+      <Link></Link>
       return <Redirect push to="/SignUp" />;
     }
     if (this.state.login) {
-      return <Redirect push to="/Home" />;
+      return <Home/>;
     }
     if (this.state.problem) {
-      error =  <Problem />;
+      return <Route path="Home" exact component={Home} />
     }
-    return <center>
+    return (
+      <center>
         <h1 id="header">It's Purrrrrrrrrrfect</h1>
-      {error}
+        {error}
         <form className="form" onSubmit={this.handleSubmit}>
           <label>
             <input type="text" name="email" placeholder="Email" />
@@ -64,7 +70,12 @@ class Login extends Component {
           <input type="submit" />
         </form>
         <button onClick={this.handleSignUp}>SignUp</button>
-      </center>;
+        <Switch>
+          <Route path="/Home" exact component={Home} />
+        </Switch>
+    </center>);
+ 
+
   }
 }
 
