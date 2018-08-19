@@ -42,7 +42,7 @@ class SignUp extends Component {
         if (this.state.loginRedirect) {
           return <Redirect push to="/" />;
         }
-        return <div id="SignUp">
+        return (<div id="SignUp">
             <center>
               <form className="form" onSubmit={this.handleSubmit}>
                 <label>
@@ -56,7 +56,7 @@ class SignUp extends Component {
                 <button>Submit</button>
               </form>
             </center>
-          </div>;
+      </div>);
     }
 }
 
