@@ -8,7 +8,12 @@ import SignUp from "./MyComponents/SignUp";
 
 class App extends React.Component {
 
-  getUserName = name => {
+  constructor(){
+    super();
+    this.getUser = this.getUser.bind(this);
+  }
+
+  getUser (name)  {
     console.log("From App");
     console.log(name);
   };
@@ -20,7 +25,7 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <Login getName={getUserName} />}
+            render={() => <Login getName={this.getUser} />}
           />
           <Route path="/Home" component={Home} />
           <Route path="/SignUp" component={SignUp} />
