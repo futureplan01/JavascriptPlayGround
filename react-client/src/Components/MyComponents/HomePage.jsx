@@ -6,15 +6,11 @@ import React, {Component} from 'react';
 class HomePage extends Component {
   
   render() {
-    console.log("From Home Page");
-    console.log(this.props.name);
-    return (
-      <div>
+    return <div>
         <center>
-          <h1 id="header">Welcome</h1>
+          <h1 id="header">Welcome, {this.props.name}</h1>
         </center>
-      </div>
-    );
+      </div>;
   }
 }
 
