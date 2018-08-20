@@ -16,13 +16,13 @@ class Login extends Component {
       userName: "",
       email: "",
       signUp: false,
-      login: false,
       problem: false
     };
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
-  
+
 
   handleSubmit(events) {
     events.preventDefault();
@@ -33,6 +33,7 @@ class Login extends Component {
         password: events.target.password.value
       })
       .then(res => {
+        this.props.getUser(res.data.user.userName);
         this.setState({ login: true});
       })
       .catch(err => {
@@ -50,15 +51,13 @@ class Login extends Component {
       return <Redirect push to="/SignUp" />;
     }
     if (this.state.login) {
-      return <Redirect push to= "/Home" />;
+      return <Redirect push to="/Home" />; 
     }
     if (this.state.problem) {
-      error = <Problem/>
+      error = <Problem />;
     }
     return (
-
       <div>
-
         <center>
           <h1 id="header">It's Purrrrrrrrrrfect</h1>
           {error}
@@ -73,9 +72,8 @@ class Login extends Component {
           </form>
           <button onClick={this.handleSignUp}>SignUp</button>
         </center>
- 
-       
-      </div>);
+      </div>
+    );
   }
 }
 

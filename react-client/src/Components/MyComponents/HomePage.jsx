@@ -4,13 +4,17 @@ import React, {Component} from 'react';
 
 
 class HomePage extends Component {
-
+  
   render() {
-    return <div>
+    console.log("From Home Page");
+    console.log(this.props.name);
+    return (
+      <div>
         <center>
           <h1 id="header">Welcome</h1>
         </center>
-      </div>;
+      </div>
+    );
   }
 }
 

@@ -58,8 +58,10 @@ router.post('/login', (req, res) => {
         .then(isMatch => {
           if (isMatch) { // if passwords match
             // WRITE CODE HERE FOR LOGIN IS SUCCESSFUL
+            console.log(res);
             res.json({
-              msg: 'Success'
+              msg: 'Success',
+              user: user
             });
           } else {
             return (res.status(400).json({
