@@ -1,12 +1,10 @@
-//all Get, DELELET etc for db goes here
-//all the routes go
 const bcrypt = require('bcryptjs');
 const express = require("express");
 const router = express.Router();
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
-const userSession = require("../../models/UserSession");
+const UserSession = require("../../models/UserSession");
 
 // @route   GET api/users
 // @desc    Get all Users
@@ -39,8 +37,8 @@ router.post("/", (req, res) => {
 
 
 router.post('/login', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  let email = req.body.email;
+  let password = req.body.password;
   email = email.toLowerCase();
   email = email.trim();
   password = password.trim();
@@ -64,9 +62,8 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
-
             // Makes Session 
-            const userSession = new userSession();
+            const userSession = new UserSession();
             userSession.userId = user._id;
             userSession.save((err,doc) =>{
               if (err){
@@ -84,10 +81,10 @@ router.post('/login', (req, res) => {
              });
             });
             // end Session
-            res.json({
-              msg: 'Success',
-              user: user
-            });
+            //res.json({
+              //msg: 'Success',
+              //user: user
+            //});
           } else {
             return res
               .status(401)
