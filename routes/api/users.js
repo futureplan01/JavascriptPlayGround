@@ -6,6 +6,7 @@ const router = express.Router();
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
+const userSession = require("../../models/UserSession");
 
 // @route   GET api/users
 // @desc    Get all Users
@@ -40,7 +41,9 @@ router.post("/", (req, res) => {
 router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  email = email.toLowerCase();
+  email = email.trim();
+  password = password.trim();
   //Find User by email
   User.findOne({
       email
@@ -48,25 +51,50 @@ router.post('/login', (req, res) => {
     .then(user => {
 
       if (!user) {
-        return ( res.status(404).json({
-          email: "User email not found!"
-        }));
+        return res
+          .status(401) // Status Code 401 means authentication has failed
+          .json({
+            success: false,
+            message: "Wrong email/password combination"
+          });
       }
+  
 
       //Check Password
       bcrypt.compare(password, user.password)
         .then(isMatch => {
-          if (isMatch) { // if passwords match
-            // WRITE CODE HERE FOR LOGIN IS SUCCESSFUL
-            console.log(res);
+          if (isMatch) { 
+
+            // Makes Session 
+            const userSession = new userSession();
+            userSession.userId = user._id;
+            userSession.save((err,doc) =>{
+              if (err){
+                console.log(err);
+                return res.send({
+                  sucess: false,
+                  message: "error: server error"
+                });
+              }
+
+              return res.send({
+                success: true,
+                message: "Valid sign in",
+                token: doc._id
+             });
+            });
+            // end Session
             res.json({
               msg: 'Success',
               user: user
             });
           } else {
-            return (res.status(400).json({
-              password: "Password incorrect!"
-            }));
+            return res
+              .status(401)
+              .json({
+                success: false,
+                message: "Wrong email/password combination"
+              });
           }
         });
     });

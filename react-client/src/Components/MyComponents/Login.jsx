@@ -33,6 +33,7 @@ class Login extends Component {
         password: events.target.password.value
       })
       .then(res => {
+        console.log(res);
         this.props.getUser(res.data.user.userName);
         this.setState({ login: true});
       })
