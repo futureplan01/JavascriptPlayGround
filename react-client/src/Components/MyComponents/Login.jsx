@@ -16,7 +16,7 @@ class Login extends Component {
       userName: "",
       email: "",
       signUp: false,
-      problem: false
+      error: ''
     };
     
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +38,7 @@ class Login extends Component {
         this.setState({ login: true});
       })
       .catch(err => {
-        this.setState({ problem: true });
+        this.setState({ problem: true});
         console.log(err);
       });
   }
@@ -55,7 +55,7 @@ class Login extends Component {
       return <Redirect push to="/Home" />; 
     }
     if (this.state.problem) {
-      error = <Problem />;
+      error = <Problem/>;
     }
     return (
       <div>

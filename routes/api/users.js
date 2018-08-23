@@ -1,10 +1,22 @@
 const bcrypt = require('bcryptjs');
 const express = require("express");
-const router = express.Router();
+const session = require("express-session");
+const router = express();
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
-const UserSession = require("../../models/UserSession");
+
+
+//Sessions
+router.use(
+  session({
+    // Random String to make the hash that is generated secure
+    secret: "the-man-in-the-mirror",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+  })
+);
 
 // @route   GET api/users
 // @desc    Get all Users
@@ -38,6 +50,7 @@ router.post("/", (req, res) => {
 
 router.post('/login', (req, res) => {
   let email = req.body.email;
+  let user = req.body.user;
   let password = req.body.password;
   email = email.toLowerCase();
   email = email.trim();
@@ -62,29 +75,10 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
-            // Makes Session 
-            const userSession = new UserSession();
-            userSession.userId = user._id;
-            userSession.save((err,doc) =>{
-              if (err){
-                console.log(err);
-                return res.send({
-                  sucess: false,
-                  message: "error: server error"
-                });
-              }
-
-              return res.send({
-                success: true,
-                message: "Valid sign in",
-                token: doc._id
-             });
-            });
-            // end Session
-            //res.json({
-              //msg: 'Success',
-              //user: user
-            //});
+            req.session.email = email;
+            // user logged in for 10 minutes
+            req.session.cookie = 10*1000;
+            return res.json({ msg: "Success", user: user });
           } else {
             return res
               .status(401)
@@ -97,10 +91,6 @@ router.post('/login', (req, res) => {
     });
   });
 
-
-// @router  GET api/users/register
-// @desc    Register a user
-// @access  Public
 router.post('/register', (req, res) => {
   //check if email exists in db already 
   User.findOne({
