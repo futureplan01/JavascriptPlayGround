@@ -1,11 +1,22 @@
-//all Get, DELELET etc for db goes here
-//all the routes go
 const bcrypt = require('bcryptjs');
 const express = require("express");
-const router = express.Router();
+const session = require("express-session");
+const router = express();
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
+
+
+//Sessions
+router.use(
+  session({
+    // Random String to make the hash that is generated secure
+    secret: "the-man-in-the-mirror",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+  })
+);
 
 // @route   GET api/users
 // @desc    Get all Users
@@ -38,9 +49,12 @@ router.post("/", (req, res) => {
 
 
 router.post('/login', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
+  let email = req.body.email;
+  let user = req.body.user;
+  let password = req.body.password;
+  email = email.toLowerCase();
+  email = email.trim();
+  password = password.trim();
   //Find User by email
   User.findOne({
       email
@@ -48,34 +62,35 @@ router.post('/login', (req, res) => {
     .then(user => {
 
       if (!user) {
-        return ( res.status(404).json({
-          email: "User email not found!"
-        }));
+        return res
+          .status(401) // Status Code 401 means authentication has failed
+          .json({
+            success: false,
+            message: "Wrong email/password combination"
+          });
       }
+  
 
       //Check Password
       bcrypt.compare(password, user.password)
         .then(isMatch => {
-          if (isMatch) { // if passwords match
-            // WRITE CODE HERE FOR LOGIN IS SUCCESSFUL
-            console.log(res);
-            res.json({
-              msg: 'Success',
-              user: user
-            });
+          if (isMatch) { 
+            req.session.email = email;
+            // user logged in for 10 minutes
+            req.session.cookie = 10*1000;
+            return res.json({ msg: "Success", user: user });
           } else {
-            return (res.status(400).json({
-              password: "Password incorrect!"
-            }));
+            return res
+              .status(401)
+              .json({
+                success: false,
+                message: "Wrong email/password combination"
+              });
           }
         });
     });
   });
 
-
-// @router  GET api/users/register
-// @desc    Register a user
-// @access  Public
 router.post('/register', (req, res) => {
   //check if email exists in db already 
   User.findOne({

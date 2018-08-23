@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
+const session = require("express-session");
 const app = express();
 
 let port = process.env.PORT || 7555;
@@ -12,6 +13,7 @@ app.use(
     extended: false
   })
 );
+
 
 //Connects to DB
 const db = require("./keys").mongodb.dbURI;

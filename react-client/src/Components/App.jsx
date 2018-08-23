@@ -11,19 +11,20 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: ''
+      name: '',
+      isAuth: false
     };
     this.getUser = this.getUser.bind(this);
   }
   getUser(user) {
-    this.setState({name: user});
+    this.setState({ name: user, isAuth: true});
   }
   
   render() {
     return <Router>
         <Switch>
           <Route exact path="/" render={() => <Login getUser={this.getUser} name="" />} />
-        <Route path="/Home" render={() => <Home name={this.state.name} />} />
+          <Route path="/Home" render={() => <Home name={this.state.name} isAuth={this.state.isAuth} />} />
           <Route path="/SignUp" component={SignUp} />
         </Switch>
       </Router>;
