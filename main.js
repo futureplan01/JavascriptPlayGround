@@ -28,7 +28,7 @@ io.on("connection", (client)=>{
   });
 
   client.on("example_message", (msg)=>{
-    console.log("message" + msg);
+    console.log("message: " + msg);
   });
 });
 
