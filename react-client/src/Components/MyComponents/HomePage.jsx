@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
+import Header from './ChatApp/Header'
+import ChatScreen from "./ChatApp/ChatScreen";
+import Submit from "./ChatApp/Submit";
+//Header
 
-// how would i make element work into the app.
+// Chat Screen
 
+//Submit
 
 class HomePage extends Component {
   
   render() {
     return <div>
-        <center>
-          <h1 id="header">Welcome, {this.props.name}</h1>
-        </center>
+        <Header name={this.props.name} />
+        <ChatScreen name={this.props.name}/>
+        <Submit/>
       </div>;
   }
 }

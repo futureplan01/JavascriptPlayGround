@@ -6,7 +6,6 @@ input{
     text-align: center;
 }
 body {
-    background-image: url("http://getwallpapers.com/wallpaper/full/e/1/2/41252.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: rgba(58, 75, 89, .7);
@@ -25,6 +24,17 @@ h1{
 #SignUp{
     background-color: black;
 }
+#submit{
+    min-width:100%
+}
 .form{
     margin-top: 12%;
+}
+.chatScreen{
+    min-height:400px;
+    min-width:100px;
+    height:100%;
+    width:100%;
+    overflow-y: scroll;
+    background-color: white;   
 }

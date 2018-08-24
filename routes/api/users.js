@@ -77,7 +77,7 @@ router.post('/login', (req, res) => {
           if (isMatch) { 
             req.session.email = email;
             // user logged in for 10 minutes
-            req.session.cookie = 10*1000;
+            req.session.cookie.maxAge = 10 * 1000;
             return res.json({ msg: "Success", user: user });
           } else {
             return res
