@@ -27,7 +27,7 @@ io.on("connection", (client)=>{
     console.log("user has disconnected");
   });
 
-  client.on("example_message", (msg)=>{
+  client.on("user", msg => {
     console.log("message: " + msg);
   });
 });

@@ -9,7 +9,7 @@ const socket = openSocket(url);
 const sendSocketIO = (e) => {
   if (e.key === "Enter") {
       console.log("sending from client");
-      socket.emit('sup girl')
+      socket.emit("user", 'sup_girl');
   }
 };
 
