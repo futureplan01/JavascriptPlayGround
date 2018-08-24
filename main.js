@@ -28,7 +28,7 @@ io.on("connection", (client)=>{
   });
 
   client.on("user", msg => {
-    console.log("message: " + msg);
+    console.log(msg);
   });
 });
 

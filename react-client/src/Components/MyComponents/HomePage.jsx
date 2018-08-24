@@ -14,7 +14,7 @@ class HomePage extends Component {
     return <div>
         <Header name={this.props.name} />
         <ChatScreen name={this.props.name}/>
-        <Submit/>
+      <Submit name={this.props.name}/>
       </div>;
   }
 }
