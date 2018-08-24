@@ -21,7 +21,6 @@ class SignUp extends Component {
         const value = { userName: events.target.name.value, email: events.target.email.value, password: events.target.password.value };
         let url = window.location.href;
         let res = url.split("/SignUp");
-        console.log(res);
         return fetch(res[0] + "/api/users/register", {
           method: "POST",
           body: JSON.stringify(value),
@@ -38,7 +37,6 @@ class SignUp extends Component {
     }
 
     render(){
-      console.log("Sup Gurl");
         if (this.state.loginRedirect) {
           return <Redirect push to="/" />;
         }
