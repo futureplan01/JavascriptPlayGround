@@ -29,6 +29,7 @@ io.on("connection", (client)=>{
 
   client.on("user", msg => {
     console.log(msg);
+    client.broadcast.emit("user", msg);
   });
 });
 
