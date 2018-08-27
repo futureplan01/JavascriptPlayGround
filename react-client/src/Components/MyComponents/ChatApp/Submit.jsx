@@ -11,7 +11,7 @@ class Submit extends Component {
   
   constructor() {
     super();
-    this.state = { text: "", readMessage: "" };
+    this.state = { text: "", readMessage: "", index: 0 };
     this.sendSocketIO = this.sendSocketIO.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,10 +22,12 @@ class Submit extends Component {
 
   sendSocketIO(e) {
     if (e.key === "Enter") {
-      socket.emit("user", { 'user': this.props.name, 'message': e.target.value });
-      this.setState({
-        text: ""
-      });
+      socket.emit("user", {
+        user: this.props.name,
+        message: e.target.value,
+        index: this.state.index
+     });
+      this.setState({ text: "", index: this.state.index + 1 });
     }
   }
 
