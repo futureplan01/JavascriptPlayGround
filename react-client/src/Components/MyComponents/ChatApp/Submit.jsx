@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import openSocket from "socket.io-client";
+import { timingSafeEqual } from "crypto";
 
 let url = window.location.href;
 
@@ -15,14 +16,13 @@ class Submit extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange(event) {
     this.setState({ text: event.target.value });
   }
 
   sendSocketIO(e) {
     if (e.key === "Enter") {
-      socket.emit("user", this.props.name + ": " + e.target.value);
+      socket.emit("user", { 'user': this.props.name, 'message': e.target.value });
       this.setState({
         text: ""
       });
@@ -30,9 +30,6 @@ class Submit extends Component {
   }
 
   render() {
-    socket.on('user', (msg) => {
-      console.log(msg);
-    });
     return (
       <input
         id="submit"

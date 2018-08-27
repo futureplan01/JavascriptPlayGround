@@ -2,21 +2,32 @@ import React, { Component } from "react";
 import styles from "../Login.css";
 import openSocket from "socket.io-client";
 
-let url = window.location.href;
-const socket = openSocket(url);
-console.log("From chat screen:" + url);
+const socket = openSocket(window.location.href);
 
-function readMessage (){
-    socket.on("connection",(data) =>{
-        console.log(data);
-    });
-}
-function ChatScreen(props) {
-    return (
-        <div className= "chatScreen"> 
-            
-        </div>
-    );
+
+class ChatScreen extends Component {
+  constructor() {
+    super();
+      this.state = {
+          message: '',
+          messages: [] };
+      socket.on("user", (data) => {
+          console.log("checking");
+          this.state.messages.push(data);
+          this.setState({ message: data});
+      });
+
+
+  }
+  render(){
+      return <div className="chatScreen">
+          {this.state.messages.map(data => { 
+              return <h3 key={data.user}>
+                  {data.user + ": " + data.message}
+                </h3>;
+            })}
+        </div>;
+  }
 }
 
 export default ChatScreen;
