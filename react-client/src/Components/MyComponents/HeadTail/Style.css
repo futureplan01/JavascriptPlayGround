@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(35, 61, 77);
+    min-height: 4em;
+    min-width: 5em;
+}
+
+h1,h2,h3,h4,h5{
+    color: white;
+}
+
+.orange{
+   color: rgb(254, 127, 45);
+}
+

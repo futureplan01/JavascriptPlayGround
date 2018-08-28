@@ -8,6 +8,8 @@ import styles from "./Login.css";
 import SignUp from "./SignUp";
 import Home from "./HomePage";
 import Problem from "./ProblemOccured";
+import Header from "./HeadTail/Header";
+import Footer from "./HeadTail/Footer";
 
 class Login extends Component {
   constructor() {
@@ -59,6 +61,7 @@ class Login extends Component {
     }
     return (
       <div>
+        <Header/>
         <center>
           <h1 id="header">It's Purrrrrrrrrrfect</h1>
           {error}
@@ -73,6 +76,7 @@ class Login extends Component {
           </form>
           <button onClick={this.handleSignUp}>SignUp</button>
         </center>
+        <Footer/>
       </div>
     );
   }
