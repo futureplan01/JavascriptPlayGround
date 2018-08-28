@@ -60,7 +60,6 @@ router.post('/login', (req, res) => {
       email
     })
     .then(user => {
-
       if (!user) {
         return res
           .status(401) // Status Code 401 means authentication has failed

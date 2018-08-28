@@ -5,17 +5,13 @@ input{
     margin-top: 2%;
     text-align: center;
 }
-body {
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: rgba(58, 75, 89, .7);
-}
+
 h1,h2,h3,h4,a{
-    color: rgba(215, 145, 25, 1);
+    color:rgb(35, 61, 77)
 }
 
 h1{
-        font-size: 4em;
+    font-size: 4em;
 }
 
 #header{
