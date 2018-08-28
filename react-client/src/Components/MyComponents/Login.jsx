@@ -59,11 +59,10 @@ class Login extends Component {
     if (this.state.problem) {
       error = <Problem/>;
     }
-    return (
-      <div>
-        <Header/>
+    return <div>
+        <Header />
         <center>
-          <h1 id="header">It's Purrrrrrrrrrfect</h1>
+          <h1>Lets Start Chatting</h1>
           {error}
           <form className="form" onSubmit={this.handleSubmit}>
             <label>
@@ -76,9 +75,7 @@ class Login extends Component {
           </form>
           <button onClick={this.handleSignUp}>SignUp</button>
         </center>
-        <Footer/>
-      </div>
-    );
+      </div>;
   }
 }
 

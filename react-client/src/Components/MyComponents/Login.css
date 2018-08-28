@@ -7,12 +7,9 @@ input{
 }
 
 h1{
-    font-size: 4em;
+    font-size: 3 em;
 }
 
-#header{
-    margin-top: 10%;
-}
 #SignUp{
     background-color: black;
 }
@@ -20,7 +17,7 @@ h1{
     min-width:100%
 }
 .form{
-    margin-top: 12%;
+    margin-top: 7%;
 }
 .chatScreen{
     min-height:400px;

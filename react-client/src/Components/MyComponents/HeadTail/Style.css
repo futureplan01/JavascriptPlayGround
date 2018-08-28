@@ -7,8 +7,16 @@ body{
 h1,h2,h3,h4,h5{
     color: white;
 }
-
+.headerDiv{
+}
 .orange{
    color: rgb(254, 127, 45);
 }
+#header {
+    margin-left: 7%;
+    margin-top: 3%;
+    font-size: 2em;
+    font-family: 'Oxygen',sans-serif;
+}
+
 

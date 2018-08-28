@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import Styles from "./Style.css";
 
 function Header(props) {
-  return <div className="main">
-    <h3 className= 'orange'>ChatApp</h3>
+  return <div className="headerDiv">
+      <span>
+        <h2 id="header" className="orange">
+          Majestic Vibes
+        </h2>
+      </span>
     </div>;
 }
 
