@@ -3,7 +3,7 @@ import React, { Component } from "react";
 function Header(props) {
   return (
     <div className="main">
-      <h3>Wrong Username/Password combination</h3>
+      <h3>Yo Yo</h3>
     </div>
   );
 }
