@@ -12,6 +12,7 @@ class ChatScreen extends Component {
           message: '',
           messages: [] };
       socket.on("user", (data) => {
+          console.log(data);
           this.state.messages.push(data);
           this.setState({ message: data});
       });
@@ -22,7 +23,9 @@ class ChatScreen extends Component {
       return <div className="chatScreen">
           {this.state.messages.map(data => { 
 
-              return <h3 key={data.user + ':' + data.index}>
+              return <h3
+                  className = 'chat' key={data.user + ":" + data.index}
+                >
                   {data.user + ": " + data.message}
                 </h3>;
             })}

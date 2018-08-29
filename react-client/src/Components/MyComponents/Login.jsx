@@ -65,14 +65,14 @@ class Login extends Component {
           <h1>Lets Start Chatting</h1>
           {error}
           <form className="form" onSubmit={this.handleSubmit}>
-            <input class = 'input' type="text" name="email" placeholder="Email" />
+          <input className ='input' type="text" name="email" placeholder="Email" />
             <br />
-            <input class='input' type="password" name="password" placeholder="Password" />
+          <input className='input' type="password" name="password" placeholder="Password" />
             <br />
-          <input id= 'submitBtn' class='input' type="submit" />
+          <input id='submitBtn' className='input' type="submit" />
           </form>
         <h2 className= 'yellow'> OR </h2>
-        <button  id = 'signUpBtn'class='input' onClick={this.handleSignUp}>SignUp</button>
+        <button id='signUpBtn' className='input' onClick={this.handleSignUp}>SignUp</button>
         </center>
       </div>;
   }

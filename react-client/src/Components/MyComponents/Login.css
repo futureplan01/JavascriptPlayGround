@@ -35,6 +35,9 @@ h1{
     text-align: center;
     width: 50%;
 }
+.chat{
+    color:rgb(35, 61, 77);
+}
 .chatScreen{
     min-height:400px;
     min-width:100px;
