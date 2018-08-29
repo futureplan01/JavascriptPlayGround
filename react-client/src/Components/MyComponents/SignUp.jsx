@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fetch from "isomorphic-fetch";
 import { Redirect } from "react-router";
+import Header from "./HeadTail/Header";
 import styles from "./Login.css";
 
 class SignUp extends Component {
@@ -40,16 +41,18 @@ class SignUp extends Component {
         if (this.state.loginRedirect) {
           return <Redirect push to="/" />;
         }
-        return (<div id="SignUp">
+        return (
+        
+          <div className="signUp" >
+            <Header/>
             <center>
+              <h1>Sign Up</h1>
               <form className="form" onSubmit={this.handleSubmit}>
-                <label>
-                  <input type="text" name="name" placeholder="UserName"/>
+                  <input class='input' type="text" name="name" placeholder="UserName"/>
                   <br />
-                  <input type="text" name="email" placeholder="Email"/>
+                  <input class='input' type="text" name="email" placeholder="Email"/>
                   <br />
-                  <input type="password" name="password" placeholder = 'Password'/>
-                </label>
+                  <input class='input' type="password" name="password" placeholder = 'Password'/>
                 <br />
                 <button>Submit</button>
               </form>
