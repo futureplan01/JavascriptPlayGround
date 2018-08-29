@@ -3,11 +3,9 @@ import Styles from "./Style.css";
 
 function Header(props) {
   return <div className="headerDiv">
-      <span>
-        <h2 id="header" className="orange">
-          Majestic Vibes
+        <h2 id="header" className="orange"> Majestic Vibes
+         <span className='orange col-md-3 offset-md-3"'> Sign Up</span>
         </h2>
-      </span>
     </div>;
 }
 

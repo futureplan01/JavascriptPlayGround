@@ -1,23 +1,39 @@
-input{   
-    min-height: 67%;  
-    min-width: 40%;
-    font-size: 22px;
-    margin-top: 2%;
-    text-align: center;
-}
 
 h1{
-    font-size: 3 em;
+    font-size: 3em;
 }
 
+#signUpBtn{
+    color: rgb(35, 61, 77);
+    background-color : rgb(161, 193, 129);
+}
+
+#submitBtn{
+    color:rgb(254, 127, 45);
+    background-color :rgb(35, 61, 77);
+}
 #SignUp{
     background-color: black;
 }
 #submit{
     min-width:100%
 }
+#loginForm{
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    margin: 5%;
+    padding: 5%;
+}
 .form{
     margin-top: 7%;
+    margin-bottom: 5%;
+}
+.input{
+    font-size: 22px;
+    margin-top: 2%;
+    text-align: center;
+    width: 50%;
 }
 .chatScreen{
     min-height:400px;
@@ -26,4 +42,7 @@ h1{
     width:100%;
     overflow-y: scroll;
     background-color: white;   
+}
+.yellow{
+    color: rgb(252,202,70);
 }
