@@ -43,18 +43,18 @@ class SignUp extends Component {
         }
         return (
         
-          <div className="signUp" >
+          <div >
             <Header/>
-            <center>
+            <center className="signUp" >
               <h1>Sign Up</h1>
               <form className="form" onSubmit={this.handleSubmit}>
-                  <input class='input' type="text" name="name" placeholder="UserName"/>
+                <input className='input' type="text" name="name" placeholder="UserName"/>
                   <br />
-                  <input class='input' type="text" name="email" placeholder="Email"/>
+                <input className='input' type="text" name="email" placeholder="Email"/>
                   <br />
-                  <input class='input' type="password" name="password" placeholder = 'Password'/>
+                <input className='input' type="password" name="password" placeholder = 'Password'/>
                 <br />
-                <button>Submit</button>
+                <button id='signUpBtn' className= 'input' >Submit</button>
               </form>
             </center>
       </div>);
