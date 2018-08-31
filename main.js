@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+
 const users = require("./routes/api/users");
 const app = express();
-
 let port = process.env.PORT || 7555;
 
 const server = app.listen(port, () => {
