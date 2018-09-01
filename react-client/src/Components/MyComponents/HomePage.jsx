@@ -12,12 +12,12 @@ import Header from "./HeadTail/Header";
 class HomePage extends Component {
   
   render() {
-    return <div>
+    return (<div>
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
         <ChatScreen name={this.props.name}/>
       <Submit name={this.props.name}/>
-      </div>;
+    </div>);
   }
 }
 

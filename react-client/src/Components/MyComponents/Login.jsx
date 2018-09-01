@@ -59,7 +59,7 @@ class Login extends Component {
     if (this.state.problem) {
       error = <Problem/>;
     }
-    return <div>
+    return( <div>
       <Header name='Sign Up'/>
       <center id = 'loginForm'>
           <h1>Lets Start Chatting</h1>
@@ -74,7 +74,7 @@ class Login extends Component {
         <h2 className= 'yellow'> OR </h2>
         <button id='signUpBtn' className='input' onClick={this.handleSignUp}>SignUp</button>
         </center>
-      </div>;
+    </div>);
   }
 }
 

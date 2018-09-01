@@ -1,13 +1,44 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import Styles from "./Style.css";
 
-function Header(props) {
-    let headerName = props.name;
-  return <div className="headerDiv">
-        <h2 id="header" className="orange"> Majestic Vibes
-         <span className='orange col-md-3 offset-md-3"'> {headerName}</span>
-        </h2>
-    </div>;
-}
+class Header extends Component {
+  constructor(){
+    super();
+    this.state = {
+      redirect :''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(e){
+    e.preventDefault();
+    if (this.props.name == 'Log In') {
+      console.log('Log In');
+      this.setState({ redirect: '/' });
+    }
+    else if (this.props.name == 'Sign Up') {
+      console.log("Sign Up");
+      this.setState({ redirect : '/SignUp' });
+    }
+    else if (this.props.name == 'Log Out') {
+      //Destroy Session
+    }
+  }
+  render() {
+    let headerName = this.props.name;
+    if (this.state.redirect !== ''){
+      console.log("Redirecting to: " + this.state.redirect);
+      return <Redirect push to={this.state.redirect} />;
+    }
+    return (<div className="headerDiv">
+      <h2 id="header" className="orange"> Majestic Vibes
+         <button className="textBtn orange col-md-3 offset-md-3 " onClick={this.handleSubmit}>{headerName}</button>
+      </h2>
+    </div>);
+  }
+} 
+
+
+
 
 export default Header;

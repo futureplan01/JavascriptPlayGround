@@ -25,6 +25,10 @@ h1{
     margin: 5%;
     padding: 5%;
 }
+.textBtn{
+    background:none;
+    border:none;
+}
 .form{
     margin-top: 7%;
     margin-bottom: 5%;

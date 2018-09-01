@@ -29,7 +29,6 @@ class SignUp extends Component {
             "Content-Type": "application/json"
           }
         }).then(res => {
-            console.log("hellppp");
             this.setState({ loginRedirect: true });
             return res;
           })
@@ -41,7 +40,7 @@ class SignUp extends Component {
         if (this.state.loginRedirect) {
           return <Redirect push to="/" />;
         }
-        return <div>
+        return (<div>
             <Header name='Log In'/>
             <center className="signUp">
               <h1>Sign Up</h1>
@@ -57,7 +56,7 @@ class SignUp extends Component {
                 </button>
               </form>
             </center>
-          </div>;
+        </div>);
     }
 }
 
