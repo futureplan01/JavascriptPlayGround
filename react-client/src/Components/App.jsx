@@ -22,7 +22,9 @@ class App extends React.Component {
   render() {
     return <Router>
         <Switch>
-          <Route exact path="/" render={() => <Login getUser={this.getUser} name="" />} />
+          <Route exact path="/" render={() => {
+            <Login getUser={this.getUser} name="" />
+          }} />
           <Route path="/Home" render={() => <Home name={this.state.name} isAuth={this.state.isAuth} />} />
           <Route path="/SignUp" component={SignUp} />
         </Switch>

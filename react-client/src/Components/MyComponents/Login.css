@@ -41,7 +41,7 @@ h1{
 .chatScreen{
     height:400px;
     width:100%;
-    overflow: scroll;
+    overflow: auto;
     background-color: white;   
 }
 .signUp{

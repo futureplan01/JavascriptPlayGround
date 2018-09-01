@@ -60,7 +60,7 @@ class Login extends Component {
       error = <Problem/>;
     }
     return <div>
-        <Header />
+      <Header name='Sign Up'/>
       <center id = 'loginForm'>
           <h1>Lets Start Chatting</h1>
           {error}

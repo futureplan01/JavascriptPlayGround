@@ -13,7 +13,7 @@ class HomePage extends Component {
   
   render() {
     return <div>
-        <Header/>
+      <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
         <ChatScreen name={this.props.name}/>
       <Submit name={this.props.name}/>

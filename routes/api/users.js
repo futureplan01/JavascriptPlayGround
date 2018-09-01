@@ -74,7 +74,9 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
+            req.session.email
             req.session.email = email;
+            req.session.username = user.userName;
             // user logged in for 10 minutes
             req.session.cookie.maxAge = 10 * 1000;
             return res.json({ msg: "Success", user: user });
