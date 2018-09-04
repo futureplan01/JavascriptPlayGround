@@ -11,7 +11,7 @@ class Submit extends Component {
   
   constructor() {
     super();
-    this.state = { text: "", readMessage: "", index: 0 };
+    this.state = { text: "", index: 0 };
     this.sendSocketIO = this.sendSocketIO.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
