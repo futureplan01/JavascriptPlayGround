@@ -30,7 +30,7 @@ class Login extends Component {
     events.preventDefault();
 
     axios
-      .post(window.location.href + "api/users/login", {
+      .post("/api/users/login", {
         email: events.target.email.value,
         password: events.target.password.value
       })

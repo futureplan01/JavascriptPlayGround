@@ -20,9 +20,7 @@ class SignUp extends Component {
     handleSubmit(events){
         events.preventDefault();
         const value = { userName: events.target.name.value, email: events.target.email.value, password: events.target.password.value };
-        let url = window.location.href;
-        let res = url.split("/SignUp");
-        return fetch(res[0] + "/api/users/register", {
+        return fetch("/api/users/register", {
           method: "POST",
           body: JSON.stringify(value),
           headers: {
