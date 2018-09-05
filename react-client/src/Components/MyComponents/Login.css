@@ -37,6 +37,10 @@ h1{
     margin-top: 7%;
     margin-bottom: 5%;
 }
+.messages{
+    margin-left: 2%;
+    margin-right: 2%;
+}
 .input{
     font-size: 22px;
     margin-top: 2%;

@@ -19,11 +19,9 @@ class ChatScreen extends Component {
           console.log("I got message from : " + data.user);
           this.setState({ message: data, fromMe: name});
       });
-
-
   }
   render(){
-      const fromMe = this.props.fromMe ? "fromMe" : "";
+      const fromMe = this.state.fromMe ? "fromMe" : "";
       return <div className="chatScreen">
           {this.state.messages.map(data => { 
               return (
