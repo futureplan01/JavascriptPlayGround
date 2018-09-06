@@ -1,7 +1,9 @@
 const bcrypt = require('bcryptjs');
 const express = require("express");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const router = express();
+const mongoose = require('mongoose');
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
@@ -14,7 +16,10 @@ router.use(
     secret: "the-man-in-the-mirror",
     resave: false,
     saveUninitialized: false,
-    cookie: {}
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    }),
+    cookie: {maxAge : 10* 1000}
   })
 );
 
