@@ -3,6 +3,7 @@ import { BrowserRouter as Router} from 'react-router-dom';
 import { Link, Switch, Route } from "react-router-dom";
 import Home from "./MyComponents/HomePage";
 import { Redirect } from "react-router";
+import axios from "axios";
 import Login from "./MyComponents/Login";
 import SignUp from "./MyComponents/SignUp";
 
@@ -14,12 +15,26 @@ class App extends React.Component {
       isAuth: false
     };
     this.getUser = this.getUser.bind(this);
+    this.checkSession = this.checkSession.bind(this);
   }
   getUser(user) {
     this.setState({ name: user, isAuth: true});
   }
-  
+  checkSession() {
+    axios.get('/api/users/isLoggedIn').then(res => {
+      console.log(res);
+      if (res.data) {
+        console.log("session is alive");
+        console.log('isAuth: ' + this.state.isAuth);
+        console.log("name: " + this.state.name);
+        //this.setState({ isAuth: true, name: res.data.userName });
+      } else {
+        console.log("Session is not available");
+      }
+    });
+  }
   render() {
+    this.checkSession();
     return (<Router>
         <Switch>
           <Route exact path="/" render={() => 

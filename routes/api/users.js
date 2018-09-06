@@ -79,11 +79,8 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
-            req.session.email
-            req.session.email = email;
-            req.session.username = user.userName;
-            // user logged in for 10 minutes
-            req.session.cookie.maxAge = 10 * 1000;
+            // session gets added to the session store
+            req.session.user = user;
             return res.json({ msg: "Success", user: user });
           } else {
             return res
@@ -96,6 +93,19 @@ router.post('/login', (req, res) => {
         });
     });
   });
+
+  function isLoggedIn(req, res) {
+    console.log(req.session);
+    console.log(req.sessionID);
+    if (req.session.user) {
+      console.log('session is available');
+      res.send(true);
+    } else {
+      console.log('session is not there');
+      res.send(false);
+    }
+  }
+  router.get('/isLoggedIn', isLoggedIn);
 
 router.post('/register', (req, res) => {
   //check if email exists in db already 
