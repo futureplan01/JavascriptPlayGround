@@ -4,7 +4,6 @@ import { timingSafeEqual } from "crypto";
 
 let url = window.location.href;
 
-const socket = openSocket(url);
 
 
 class Submit extends Component {
@@ -22,7 +21,7 @@ class Submit extends Component {
 
   sendSocketIO(e) {
     if (e.key === "Enter") {
-      socket.emit("user", {
+      this.props.socket.emit("user", {
         user: this.props.name,
         message: e.target.value,
         index: this.state.index

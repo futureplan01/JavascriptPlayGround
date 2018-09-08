@@ -7,7 +7,7 @@ const app = express();
 let port = process.env.PORT || 7555;
 
 const server = app.listen(port, () => {
-  console.log("Server running on http://localhost: " + port);
+  console.log("Server running on http://localhost:" + port);
 });
 
 //Body Parser MiddleWare
@@ -29,6 +29,7 @@ io.on("connection", (client)=>{
 
   client.on("user", msg => {
     client.broadcast.emit("user", msg);
+    console.log(msg);
   });
 });
 
