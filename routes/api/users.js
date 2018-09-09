@@ -106,6 +106,12 @@ router.post('/login', (req, res) => {
   }
   router.get('/isLoggedIn', isLoggedIn);
 
+  function destroySession(req,res){
+    req.session.destroy();
+  }
+
+  router.get('/destroySession', destroySession);
+
 router.post('/register', (req, res) => {
   //check if email exists in db already 
   User.findOne({
