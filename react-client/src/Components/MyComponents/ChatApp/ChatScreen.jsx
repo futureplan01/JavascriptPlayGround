@@ -9,6 +9,7 @@ const socket = openSocket(window.location.href);
 class ChatScreen extends Component {
 
   render(){
+  
       return <div className="chatScreen">
           {this.props.messages.map(data => { 
               return (

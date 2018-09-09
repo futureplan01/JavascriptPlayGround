@@ -11,6 +11,12 @@ class HomePage extends Component {
   constructor(){
     super();
     this.state = { message: "", messages: []};
+    this.addMessage = this.addMessage.bind(this);
+  }
+  addMessage(data){
+    console.log('hey');
+    this.state.messages.push(data);
+    this.setState({ message: data});
   }
   render() {
     socket.on("user", (data) => {
@@ -24,7 +30,7 @@ class HomePage extends Component {
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
         <ChatScreen name={this.props.name} socket={socket} messages = {this.state.messages}/>
-      <Submit name={this.props.name} socket={socket}/>
+      <Submit name={this.props.name} addMessage = {this.addMessage} socket={socket}/>
     </div>);
   }
 }

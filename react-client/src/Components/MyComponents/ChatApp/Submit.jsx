@@ -30,6 +30,8 @@ class Submit extends Component {
       // flag from sender
       message.sender = true;
 
+      this.props.addMessage(message);
+
       // need to send this to chatScreen
       this.setState({ text: "", index: this.state.index + 1 });
     }
