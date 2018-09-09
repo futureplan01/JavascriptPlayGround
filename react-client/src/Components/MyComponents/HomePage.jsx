@@ -16,12 +16,14 @@ class HomePage extends Component {
     socket.on("user", (data) => {
       console.log(data);
       this.state.messages.push(data);
+
+      // Re renders to screen
       this.setState({ message: data});
   });
     return (<div>
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
-        <ChatScreen name={this.props.name} socket={socket}/>
+        <ChatScreen name={this.props.name} socket={socket} messages = {this.state.messages}/>
       <Submit name={this.props.name} socket={socket}/>
     </div>);
   }
