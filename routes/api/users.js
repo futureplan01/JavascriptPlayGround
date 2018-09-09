@@ -15,9 +15,10 @@ router.use(
     // Random String to make the hash that is generated secure
     secret: "the-man-in-the-mirror",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: new MongoStore({
       mongooseConnection: mongoose.connection
+
     }),
     cookie: {maxAge : 10* 1000}
   })
@@ -93,13 +94,11 @@ router.post('/login', (req, res) => {
         });
     });
   });
-
+  // Takes SessionID and query session store to find user info
   function isLoggedIn(req, res) {
-    console.log(req.session);
-    console.log(req.sessionID);
     if (req.session.user) {
-      console.log('session is available');
-      res.send(true);
+      let info = {name:req.session.user.userName };
+      res.send(info);
     } else {
       console.log('session is not there');
       res.send(false);
