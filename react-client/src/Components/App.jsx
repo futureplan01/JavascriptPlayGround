@@ -12,7 +12,8 @@ class App extends React.Component {
     super();
     this.state = {
       name: '',
-      isAuth: false
+      isAuth: false,
+      redirect: false
     };
     this.getUser = this.getUser.bind(this);
     this.checkSession = this.checkSession.bind(this);
@@ -20,25 +21,31 @@ class App extends React.Component {
   getUser(user) {
     this.setState({ name: user, isAuth: true});
   }
+  sessionRedirect(){
+    return
+  }
   checkSession() {
+    console.log('checking session');
     axios.get('/api/users/isLoggedIn').then(res => {
       console.log(res);
       if (res.data && this.state.isAuth === false) {
-        this.setState({ name: res.data.name, isAuth: true});
+        console.log('redirecting... ');
+        this.setState({ name: res.data.name, isAuth: true, redirect: true});
       } 
     });
   }
   render() {
-    this.checkSession();
-    return (<Router>
+    if(this.state.redirect){
+      return <Redirect push to='/Home' />;
+    }
+    return (
         <Switch>
           <Route exact path="/" render={() => 
-            <Login getUser={this.getUser} name="" />
+            <Login getUser={this.getUser} checkSession = {this.checkSession} name="" />
           } />
-          <Route path="/Home" render={() => <Home name={this.state.name} isAuth={this.state.isAuth} />} />
+          <Route path="/Home" render={() => <Home name={this.state.name}  checkSession = {this.checkSession} isAuth={this.state.isAuth} />} />
           <Route path="/SignUp" component={SignUp} />
-        </Switch>
-        </Router>);
+        </Switch>);
   }
 }
 

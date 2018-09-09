@@ -50,6 +50,8 @@ class Login extends Component {
   }
   render() {
     let error;
+    this.props.checkSession();
+
     if (this.state.signUp) {
       return <Redirect push to="/SignUp" />;
     }

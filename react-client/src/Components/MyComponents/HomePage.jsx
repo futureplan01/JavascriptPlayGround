@@ -12,6 +12,7 @@ import Header from "./HeadTail/Header";
 class HomePage extends Component {
   
   render() {
+    this.props.checkSession();
     return (<div>
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
