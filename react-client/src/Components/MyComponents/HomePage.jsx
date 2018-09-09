@@ -7,12 +7,17 @@ import openSocket from "socket.io-client";
 
 const socket = openSocket(window.location.href);
 
-// Chat Screen
-
-//Submit
-
 class HomePage extends Component {
+  constructor(){
+    super();
+    this.state = { message: "", messages: []};
+  }
   render() {
+    socket.on("user", (data) => {
+      console.log(data);
+      this.state.messages.push(data);
+      this.setState({ message: data});
+  });
     return (<div>
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />

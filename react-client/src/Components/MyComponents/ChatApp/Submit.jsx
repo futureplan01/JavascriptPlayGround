@@ -21,11 +21,16 @@ class Submit extends Component {
 
   sendSocketIO(e) {
     if (e.key === "Enter") {
-      this.props.socket.emit("user", {
+      let message = {
         user: this.props.name,
         message: e.target.value,
         index: this.state.index
-     });
+      }
+      this.props.socket.emit("user", message);
+      // flag from sender
+      message.sender = true;
+
+      // need to send this to chatScreen
       this.setState({ text: "", index: this.state.index + 1 });
     }
   }

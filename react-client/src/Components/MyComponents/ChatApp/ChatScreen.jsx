@@ -9,7 +9,7 @@ const socket = openSocket(window.location.href);
 class ChatScreen extends Component {
   constructor() {
     super();
-      this.state = { message: "", messages: [] };
+    this.state = { message: "", messages: [] };
   }
   
   render(){
