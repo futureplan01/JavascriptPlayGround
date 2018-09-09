@@ -24,6 +24,7 @@ class Header extends Component {
     else if (this.props.name == 'Log Out') {
       console.log('Destroy Session');
       axios.get('/api/users/destroySession').then(res => {
+        console.log('yo');
         this.setState({ redirect: '/' });
       });
     }

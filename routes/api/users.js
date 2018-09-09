@@ -108,6 +108,7 @@ router.post('/login', (req, res) => {
 
   function destroySession(req,res){
     req.session.destroy();
+    res.send('destroyed');
   }
 
   router.get('/destroySession', destroySession);
