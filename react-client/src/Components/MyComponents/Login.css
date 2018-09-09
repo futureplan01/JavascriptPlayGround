@@ -2,10 +2,6 @@
 h1{
     font-size: 3em;
 }
-#fromMe{
-    text-align: right;
-    color: rgb(51, 147, 207);
-}
 #signUpBtn{
     color: rgb(35, 61, 77);
     background-color : rgb(161, 193, 129);
@@ -62,6 +58,10 @@ h1{
     border-style: solid;
     margin: 5%;
     padding: 5%;
+}
+.sender{
+    text-align: right;
+    color: rgb(51, 147, 207);
 }
 .yellow{
     color: rgb(252,202,70);
