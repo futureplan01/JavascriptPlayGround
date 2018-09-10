@@ -17,12 +17,13 @@ class App extends React.Component {
     };
     this.getUser = this.getUser.bind(this);
     this.checkSession = this.checkSession.bind(this);
+    this.unAuth = this.unAuth.bind(this);
   }
   getUser(user) {
     this.setState({ name: user, isAuth: true});
   }
-  sessionRedirect(){
-    return
+  unAuth(){
+    this.setState({isAuth: false});
   }
   checkSession() {
     console.log('checking session');
@@ -35,17 +36,16 @@ class App extends React.Component {
     });
   }
   render() {
-    if(this.state.redirect){
-      return <Redirect push to='/Home' />;
-    }
     return (
+        <Router>
         <Switch>
           <Route exact path="/" render={() => 
-            <Login getUser={this.getUser} checkSession = {this.checkSession} name="" />
+            <Login getUser={this.getUser} isAuth= {this.state.isAuth} checkSession = {this.checkSession} name="" />
           } />
-          <Route path="/Home" render={() => <Home name={this.state.name}  checkSession = {this.checkSession} isAuth={this.state.isAuth} />} />
+          <Route path="/Home" render={() => <Home name={this.state.name} unAuth = {this.unAuth} checkSession = {this.checkSession} isAuth={this.state.isAuth} />} />
           <Route path="/SignUp" component={SignUp} />
-        </Switch>);
+        </Switch>
+        </Router>);
   }
 }
 
