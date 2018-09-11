@@ -15,23 +15,34 @@ class HomePage extends Component {
     this.addMessage = this.addMessage.bind(this);
   }
   addMessage(data){
-    console.log('hey');
+    // adds message to array 
     this.state.messages.push(data);
+    console.log('added from function');
     this.setState({ message: data});
   }
+
+  
   render() {
     socket.on("user", (data) => {
-      console.log(data);
-      this.state.messages.push(data);
+      let lastIndex = this.state.messages.length - 1;
 
-      // Re renders to screen
-      this.setState({ message: data});
+      if( this.state.messages.length == 0 || data.index !== this.state.messages[lastIndex].index && data.message === this.state.messages[lastIndex].message ){
+        console.log(data);
+        this.state.messages.push(data);
+        this.setState({ message: data});
+      }else{
+        if(!(data.index === this.state.messages[lastIndex].index && data.user === this.state.messages[lastIndex].user )){
+          this.state.messages.push(data);
+          this.setState({ message: data});
+        }
+  
+      }
+      
   });
-
     return (<div>
       <Header name = 'Log Out'/>
         <ChatHeader name={this.props.name} />
-        <ChatScreen name={this.props.name} socket={socket} messages = {this.state.messages}/>
+        <ChatScreen name={this.props.name} messages = {this.state.messages}/>
       <Submit name={this.props.name} addMessage = {this.addMessage} socket={socket}/>
     </div>);
   }

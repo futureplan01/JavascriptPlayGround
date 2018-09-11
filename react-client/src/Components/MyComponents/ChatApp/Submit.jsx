@@ -26,10 +26,13 @@ class Submit extends Component {
         message: e.target.value,
         index: this.state.index
       }
-      this.props.socket.emit("user", message);
+
+      this.props.socket.emit("server", message);
+
       // flag from sender
       message.sender = true;
 
+      // adds to chatMessage Array
       this.props.addMessage(message);
 
       // need to send this to chatScreen

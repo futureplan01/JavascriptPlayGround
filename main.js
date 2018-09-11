@@ -27,7 +27,7 @@ io.on("connection", (client)=>{
     console.log("user has disconnected");
   });
 
-  client.on("user", msg => {
+  client.on("server", msg => {
     client.broadcast.emit("user", msg);
     console.log(msg);
   });
