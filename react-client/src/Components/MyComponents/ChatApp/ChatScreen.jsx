@@ -10,13 +10,10 @@ class ChatScreen extends Component {
     super();
       this.state = { message: "", messages: [], fromMe: false };
       socket.on("user", (data) => {
-          console.log(data);
           this.state.messages.push(data);
           let name = false;
           
           if (this.props.name === data.user) name = true;
-          console.log('I am : ' + this.props.name);
-          console.log("I got message from : " + data.user);
           this.setState({ message: data, fromMe: name});
       });
   }

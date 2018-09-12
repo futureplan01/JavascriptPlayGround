@@ -14,11 +14,9 @@ class Header extends Component {
   handleSubmit(e){
     e.preventDefault();
     if (this.props.name == 'Log In') {
-      console.log('Log In');
       this.setState({ redirect: '/' });
     }
     else if (this.props.name == 'Sign Up') {
-      console.log("Sign Up");
       this.setState({ redirect : '/SignUp' });
     }
     else if (this.props.name == 'Log Out') {
