@@ -7,7 +7,6 @@ const socket = openSocket(window.location.href);
 // Could Send the socket and a call back function to append the message...
 
 class ChatScreen extends Component {
-
   render(){
   
       return <div className="chatScreen">

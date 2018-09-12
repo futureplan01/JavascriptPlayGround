@@ -35,7 +35,6 @@ class Login extends Component {
         password: events.target.password.value
       })
       .then(res => {
-        console.log(res);
         this.props.getUser(res.data.user.userName);
         this.setState({ login: true});
       })
@@ -49,13 +48,21 @@ class Login extends Component {
     this.setState({ signUp: true });
   }
   render() {
-    let error;
+    if (this.state.login) {
+      console.log('redirecting from login == true');
+      return <Redirect push to="/Home" />; 
+    }
     if (this.state.signUp) {
       return <Redirect push to="/SignUp" />;
     }
-    if (this.state.login) {
+
+    // Checks Session and redirects if session is there 
+    this.props.checkSession();
+    if(this.props.getAuth){
+      console.log('Auth is: '+ this.props.isAuth);
       return <Redirect push to="/Home" />; 
     }
+    let error;
     if (this.state.problem) {
       error = <Problem/>;
     }

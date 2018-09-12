@@ -1,7 +1,9 @@
 const bcrypt = require('bcryptjs');
 const express = require("express");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const router = express();
+const mongoose = require('mongoose');
 
 //bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
@@ -13,8 +15,12 @@ router.use(
     // Random String to make the hash that is generated secure
     secret: "the-man-in-the-mirror",
     resave: false,
-    saveUninitialized: false,
-    cookie: {}
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+
+    }),
+    cookie: {maxAge : 10* 1000}
   })
 );
 
@@ -74,11 +80,8 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
-            req.session.email
-            req.session.email = email;
-            req.session.username = user.userName;
-            // user logged in for 10 minutes
-            req.session.cookie.maxAge = 10 * 1000;
+            // session gets added to the session store
+            req.session.user = user;
             return res.json({ msg: "Success", user: user });
           } else {
             return res
@@ -91,6 +94,24 @@ router.post('/login', (req, res) => {
         });
     });
   });
+  // Takes SessionID and query session store to find user info
+  function isLoggedIn(req, res) {
+    if (req.session.user) {
+      let info = {name:req.session.user.userName };
+      res.send(info);
+    } else {
+      console.log('session is not there');
+      res.send(false);
+    }
+  }
+  router.get('/isLoggedIn', isLoggedIn);
+
+  function destroySession(req,res){
+    req.session.destroy();
+    res.send('destroyed');
+  }
+
+  router.get('/destroySession', destroySession);
 
 router.post('/register', (req, res) => {
   //check if email exists in db already 
