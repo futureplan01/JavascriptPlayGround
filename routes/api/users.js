@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const express = require("express");
 const session = require("express-session");
+const dotenv = require('dotenv').config();
 const MongoStore = require('connect-mongo')(session);
 const router = express();
 const mongoose = require('mongoose');
@@ -13,7 +14,7 @@ const User = require("../../models/User");
 router.use(
   session({
     // Random String to make the hash that is generated secure
-    secret: "the-man-in-the-mirror",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({
