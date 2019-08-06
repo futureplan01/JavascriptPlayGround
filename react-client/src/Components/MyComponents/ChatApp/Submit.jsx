@@ -44,9 +44,10 @@ class Submit extends Component {
     return (
       <input
         id="submit"
-        onKeyPress={this.sendSocketIO}
-        onChange={this.handleChange}
-        value={this.state.text}
+        /* BIND THE CORRECT FUNCTIONS TO THE EVENT HANDLERS */
+        onKeyPress={}
+        onChange={}
+        value={}
         type="text"
         name="chat"
         placeholder="Send Message"

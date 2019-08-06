@@ -17,33 +17,31 @@ class App extends React.Component {
     };
     this.getUser = this.getUser.bind(this);
     this.checkSession = this.checkSession.bind(this);
-    this.unAuth = this.unAuth.bind(this);
+    this.changeAuth = this.changeAuth.bind(this);
     this.getAuth = this.getAuth.bind(this);
   }
+  /*
+  Set User's Info using setState method
+  Set's isAuth to true
+  */
   getUser(user) {
-    this.setState({ name: user, isAuth: true});
+
   }
+  // Return The state of isAuth
   getAuth(){
-    console.log('getting auth');
-    return this.state.isAuth;
+
   }
-  unAuth(){
+
+  changeAuth(value){
     console.log("Auth is: " + this.state.isAuth);
     this.setState({isAuth: false});
-  }
-  checkSession() {
-    axios.get('/api/users/isLoggedIn').then(res => {
-      if (res.data && this.state.isAuth === false) {
-        this.setState({ name: res.data.name, isAuth: true, redirect: true});
-      } 
-    });
   }
   render() {
     return (
         <Router>
-        <Switch>
+        <Switch> 
           <Route exact path="/" render={() => 
-            <Login getUser={this.getUser} isAuth= {this.state.isAuth} get={this.getAuth} checkSession = {this.checkSession} name="" />
+            <Login getUser={this.getUser} isAuth= {this.state.isAuth} changeAuth={this.changeAuth} getAuth={this.getAuth} />
           }/>
           <Route path="/Home" render={() => <Home name={this.state.name} unAuth = {this.unAuth} checkSession = {this.checkSession} isAuth={this.state.isAuth} />} />
           <Route path="/SignUp" component={SignUp} />

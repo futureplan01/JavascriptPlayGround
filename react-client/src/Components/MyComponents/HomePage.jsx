@@ -15,6 +15,7 @@ class HomePage extends Component {
     this.addMessage = this.addMessage.bind(this);
   }
   addMessage(data){
+
     // adds message to array 
     this.state.messages.push(data);
     console.log('added from function');
@@ -23,24 +24,22 @@ class HomePage extends Component {
 
   
   render() {
+
+    // Receive Messages from the socket
     socket.on("user", (data) => {
       let lastIndex = this.state.messages.length - 1;
-
       if( this.state.messages.length == 0 || data.index !== this.state.messages[lastIndex].index && data.message === this.state.messages[lastIndex].message ){
-        console.log(data);
         this.state.messages.push(data);
         this.setState({ message: data});
       }else{
+
         if(!(data.index === this.state.messages[lastIndex].index && data.user === this.state.messages[lastIndex].user )){
           this.state.messages.push(data);
           this.setState({ message: data});
         }
   
       }
-      
   });
-    this.props.checkSession();
-    let invokeUnAuth = this.props.unAuth;
     return (<div>
       <Header unAuth={invokeUnAuth} name = 'Log Out'/>
         <ChatHeader name={this.props.name} />

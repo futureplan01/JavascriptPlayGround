@@ -20,7 +20,6 @@ class Login extends Component {
       signUp: false,
       error: ''
     };
-    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
@@ -36,7 +35,7 @@ class Login extends Component {
       })
       .then(res => {
         this.props.getUser(res.data.user.userName);
-        this.setState({ login: true});
+        this.props.changeAuth(true);
       })
       .catch(err => {
         this.setState({ problem: true});
@@ -52,10 +51,6 @@ class Login extends Component {
       return <Redirect push to="/SignUp" />;
     }
 
-    if(this.props.getAuth){
-      console.log('Auth is: '+ this.props.isAuth);
-      return <Redirect push to="/Home" />; 
-    }
     let error;
     if (this.state.problem) {
       error = <Problem/>;

@@ -6,11 +6,10 @@ const socket = openSocket(window.location.href);
 
 // Could Send the socket and a call back function to append the message...
 
-class ChatScreen extends Component {
-  render(){
-  
+
+export default function ChatScreen(props){
       return <div className="chatScreen">
-          {this.props.messages.map(data => {
+          {props.messages.map(data => {
               let sender = data.sender ? 'sender' : '';
               return (
               <div className='messages' >
@@ -21,6 +20,5 @@ class ChatScreen extends Component {
             })}
         </div>;
   }
-}
 
-export default ChatScreen;
+
