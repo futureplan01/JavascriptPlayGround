@@ -48,16 +48,10 @@ class Login extends Component {
     this.setState({ signUp: true });
   }
   render() {
-    if (this.state.login) {
-      console.log('redirecting from login == true');
-      return <Redirect push to="/Home" />; 
-    }
     if (this.state.signUp) {
       return <Redirect push to="/SignUp" />;
     }
 
-    // Checks Session and redirects if session is there 
-    this.props.checkSession();
     if(this.props.getAuth){
       console.log('Auth is: '+ this.props.isAuth);
       return <Redirect push to="/Home" />; 
