@@ -3,43 +3,23 @@ const express = require("express");
 const dotenv = require('dotenv').config();
 const router = express();
 const mongoose = require('mongoose');
-
-//bring in User Model, to make queries like find, save etx
 const User = require("../../models/User");
-
+const jwt = require('jsonwebtoken');
 
 
 // @route   GET api/users
 // @desc    Get all Users
 // @acess   Public
 router.get("/", (req, res) => {
-  User.find() //taking the model caleld Items, then using find method
+  User.find() 
     .sort({
       date: -1
     })
-    .then(items => res.json(items)); // returns items(in Model file), read the file cus its json so use res
-});
-
-// @route   POST api/users
-// @desc    Create a Post, Users
-// @acess   Public
-router.post("/", (req, res) => {
-  const newUser = new User({
-    password: req.body.password,
-    email: req.body.email
-  }); //created in memory
-
-  console.log("Added User:  " + newUser);
-  newUser
-    .save()
-    .then(user => res.json(user))
-    .catch(err => {
-      console.log(err);
-    }); // save the user
+    .then(items => res.json(items));
 });
 
 // @route   POST api/login
-// @desc    Create a Post, Users
+// @desc     Checks User Validity. Password is hashed and therefore must be unhashed to accuractely checked.
 // @acess   Public
 router.post('/login', (req, res) => {
   let email = req.body.email;
@@ -47,26 +27,27 @@ router.post('/login', (req, res) => {
   email = email.toLowerCase();
   email = email.trim();
   password = password.trim();
-  //Find User by email
+
   User.findOne({
       email
     })
     .then(user => {
       if (!user) {
         return res
-          .status(401) // Status Code 401 means authentication has failed
+          .status(401) 
           .json({
             success: false,
             message: "Wrong email/password combination"
           });
       }
-  
-
       //Check Password
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) { 
-            return res.json({ msg: "Success", user: user });
+            user.online = true;
+            user.save();
+            user.token = jwt.sign({userId: user._id, exp: Math.floor(Date.now() / 1000) + 1000*60*60}, 'secret');
+            return res.json({ msg: "Success", user: user});
           } else {
             return res
               .status(401)
@@ -79,30 +60,29 @@ router.post('/login', (req, res) => {
     });
   });
 
+// @route   POST api/register
+// @desc     Register Users with a unique email. If email is not uniquely stored then user must choose a new email
+// @acess   Public
 
 router.post('/register', (req, res) => {
-  //check if email exists in db already 
   User.findOne({
       email: req.body.email
     }).then((user) => {
-      if (user) { //check if db did not find anything
+      if (user) { 
         return res.status(400).json({
           email: "Email already exists"
         });
-      } else { // Email does not exist, can be created
-        // Create an instance of the model and save the values
+      } else { 
         const newUser = User({
           userName: req.body.userName,
           email: req.body.email,
           password: req.body.password
         });
-        //hash and salt the password before storing into db
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
 
-            newUser.password = hash; // save the hashed pass to newUser.password
-            //save the newUser to db
+            newUser.password = hash; 
             newUser
               .save()
               .then(user => res.json(user))
@@ -114,17 +94,25 @@ router.post('/register', (req, res) => {
     .catch(err => console.log(err));
 });
 
-// @route   DELETE api/users/:id
-// @desc    Delete a Users given an id
+// @route   GET api/online
+// @desc    Returns all online users in the database
 // @acess   Public
-router.delete("/:id", (req, res) => {
-  User.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({
-      success: true
-    })))
-    .catch(err => res.status(404).json({
-      success: false
-    }));
+router.get("/getAllOnline", (req, res) => {
+  User.find({online: true})
+  .then(onlineUsers => {res.json(onlineUsers)});
 });
 
+// @route   POST api/turnOffline
+// @desc    changes user state from {online:true} --> {online:false}
+// @acess   Public
+router.post("/turnOffline", (req, res) => {
+  let userId = req.body.token.userId;
+  console.log(userId);
+  User.find({_id: userId})
+    .then((user)=>{
+      user.online = false;
+    })
+    .save();
+  return res.status(200).json({message: "successful"});
+});
 module.exports = router;

@@ -20,9 +20,11 @@ class Header extends Component {
       this.setState({ redirect : '/SignUp' });
     }
     else if (this.props.name == 'Log Out') {
-      console.log('Destroy Session');
-      axios.get('/api/users/destroySession').then(res => {
-        console.log('yo');
+      let token = localStorage.getItem('token');
+      axios.post('/api/users/turnOffline',{
+        token:token
+      })
+      .then(res => {
         this.setState({ redirect: '/' });
       });
     }

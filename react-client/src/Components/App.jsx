@@ -20,16 +20,19 @@ class App extends React.Component {
     this.changeAuth = this.changeAuth.bind(this);
     this.getAuth = this.getAuth.bind(this);
   }
-  /*
-  Set User's Info using setState method
-  Set's isAuth to true
-  */
-  getUser(user) {
-
+ 
+  // token valid for 1 hour seconds
+  updateUser(user) {
+    sessionStorage.setItem('token',user.token);
   }
-  // Return The state of isAuth
-  getAuth(){
 
+  componentDidMount(){
+    window.addEventListener("beforeunload",(ev)=>{
+      let token = sessionStorage.getItem('token');
+      axios.get('/turnOffline',{
+        token: token
+      });
+    })
   }
 
   changeAuth(value){
@@ -41,9 +44,9 @@ class App extends React.Component {
         <Router>
         <Switch> 
           <Route exact path="/" render={() => 
-            <Login getUser={this.getUser} isAuth= {this.state.isAuth} changeAuth={this.changeAuth} getAuth={this.getAuth} />
+            <Login />
           }/>
-          <Route path="/Home" render={() => <Home name={this.state.name} unAuth = {this.unAuth} checkSession = {this.checkSession} isAuth={this.state.isAuth} />} />
+          <Route path="/Home" render={() => <Home />} />
           <Route path="/SignUp" component={SignUp} />
         </Switch>
         </Router>);

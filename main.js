@@ -43,11 +43,8 @@ mongoose
   .then(() => console.log("MongoDb Connected...."))
   .catch(err => console.log(err));
 
-// Showing data from get mongoose
 app.use("/api/users", users);
-
 app.use(express.static(__dirname + "/react-client/public"));
-
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/react-client/public/index.html");
   console.log(request.body.name);

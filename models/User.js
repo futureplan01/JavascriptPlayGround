@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        minlength: 1,
+        unique: true,
         trim: true
     },
     password: {
@@ -25,6 +25,10 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    online:{
+        type: Boolean,
+        default: false
     },
 
 });
