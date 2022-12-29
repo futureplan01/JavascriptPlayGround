@@ -24,16 +24,16 @@
   },
   "homepage": "https://github.com/futureplan01/JavascriptPlayGround#readme",
   "dependencies": {
-    "@babel/core": "7.0.0-beta.53",
+    "@babel/core": "7.20.7",
     "@babel/preset-env": "7.0.0-beta.53",
     "@babel/preset-react": "7.0.0-beta.53",
     "axios": "0.18.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "7.1.5",
+    "babel-loader": "9.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "1.18.3",
     "connect-mongo": "2.0.1",
-    "css-loader": "1.0.0",
+    "css-loader": "6.7.3",
     "dotenv": "6.0.0",
     "express": "4.16.3",
     "express-session": "1.15.6",
@@ -50,10 +50,10 @@
     "reactjs-popup": "1.1.2",
     "socket.io": "2.1.1",
     "socket.io-client": "2.1.1",
-    "style-loader": "0.21.0",
-    "webpack": "4.16.0"
+    "style-loader": "3.3.1",
+    "webpack": "5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "3.0.8"
+    "webpack-cli": "5.0.1"
   }
 }
