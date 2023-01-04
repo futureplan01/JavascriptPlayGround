@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/futureplan01/JavascriptPlayGround#readme",
   "dependencies": {
-    "@babel/core": "7.0.0-beta.53",
+    "@babel/core": "7.20.7",
     "@babel/preset-env": "7.0.0-beta.53",
     "@babel/preset-react": "7.0.0-beta.53",
     "axios": "0.18.0",
